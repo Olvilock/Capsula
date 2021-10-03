@@ -16,4 +16,22 @@ using mom_type = struct {};
 using dir_type = struct {};
 
 //interaction type
-using inter_type = float3;
+struct force_type : float3
+{
+	__device__
+		force_type& operator += (const force_type& other)
+	{
+		x += other.x;
+		y += other.y;
+		z += other.z;
+		return *this;
+	}
+	__device__
+		force_type& operator -= (const force_type& other)
+	{
+		x -= other.x;
+		y -= other.y;
+		z -= other.z;
+		return *this;
+	}
+};

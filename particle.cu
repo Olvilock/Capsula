@@ -2,16 +2,15 @@
 
 #include "particle.cuh"
 
-__device__ __inline__
-inter_type particle::force_on(const particle& other)
+__device__
+force_type particle::force_on(const particle& other)
 {
 	//TODO
-	return inter_type();
+	return force_type();
 }
 
-extern __constant__ time_type time_step;
-
-void particle::advance(inter_type force)
+__device__
+void particle::advance(force_type force)
 {
 	//TODO
 }
