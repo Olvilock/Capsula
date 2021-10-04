@@ -6,13 +6,16 @@
 #include <thrust/iterator/zip_iterator.h>
 #include <thrust/tuple.h>
 
+#include <thrust/for_each.h>
+#include <thrust/execution_policy.h>
+
 #include <stdio.h>
 #include <iostream>
 
 #include "quantities.cuh"
 #include "particle.cuh"
 
-constexpr unsigned BLK_SIZE = 32;
+constexpr unsigned BLK_SIZE = 256;
 
 __global__
 void interpar_compute(particle* particles, force_type* forces)
@@ -50,24 +53,27 @@ void interpar_compute(particle* particles, force_type* forces)
 	}
 	__syncthreads();
 	forces[gl_index] = force_cache[lc_index];
+
+	printf("Exit %i\n", lc_index);
 }
 
 void compute(thrust::device_vector<particle>& particles,
-	thrust::device_vector<force_type>& forces)
+			 thrust::device_vector<force_type>& forces)
 {
 	assert(particles.size() % BLK_SIZE == 0);
 	assert(particles.size() == forces.size());
-	interpar_compute << < particles.size() / BLK_SIZE, BLK_SIZE >> >
+	interpar_compute <<< particles.size() / BLK_SIZE, BLK_SIZE >>>
 		(thrust::raw_pointer_cast(particles.data()),
 			thrust::raw_pointer_cast(forces.data()));
 }
 
 void advance(thrust::device_vector<particle>& particles,
-	thrust::device_vector<force_type>& forces)
+			 thrust::device_vector<force_type>& forces)
 {
 	assert(particles.size() == forces.size());
-	thrust::for_each_n
-		(thrust::make_zip_iterator(thrust::make_tuple(particles.begin(), forces.begin())), particles.size(),
+	auto begin = thrust::make_zip_iterator(thrust::make_tuple(particles.begin(), forces.begin())),
+		 end   = thrust::make_zip_iterator(thrust::make_tuple(particles.end(), forces.end()));
+	thrust::for_each(thrust::device, begin, end,
 		[] __device__(thrust::tuple<particle&, force_type&> tpl)
 		{
 			tpl.get<0>().advance(tpl.get<1>());
@@ -76,14 +82,24 @@ void advance(thrust::device_vector<particle>& particles,
 
 int main()
 {
-	thrust::device_vector<particle> pts(64);
-	thrust::device_vector<force_type> forces(64);
+	thrust::device_vector<particle> pts(1024 * 32);
+	thrust::device_vector<force_type> forces(1024 * 32);
+
+	std::cout << "Computation started...\n";
 
 	compute(pts, forces);
+	cudaDeviceSynchronize();
+
+	std::cout << "Advancing started...\n";
+
 	advance(pts, forces);
 
+	std::cout << "Ready!\n";
+
+	/*	Output the forces:
 	thrust::host_vector<force_type> h_forces = forces;
 
 	for (force_type& force : h_forces)
-		printf("%f %f %f\n", force.force.x, force.force.y, force.force.z);
+		std::cout << force.force.x << ' ' << force.force.y << ' ' << force.force.z;
+	*/
 }

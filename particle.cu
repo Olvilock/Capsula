@@ -1,5 +1,6 @@
 //particle implementation
 
+#include <thrust/tuple.h>
 #include "particle.cuh"
 
 __device__

@@ -19,6 +19,7 @@ using vel_type = float3;
 struct force_type
 {
 	float3 force;
+	//float3 momentum;
 
 	__device__
 		force_type& operator += (const force_type& other)
