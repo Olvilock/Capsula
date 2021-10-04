@@ -20,34 +20,43 @@ using vel_type = double3;
 struct force_type
 {
 	double3 force;
-	//float3 momentum;
+	//double3 momentum;
 
-	__device__
-		force_type& operator += (const force_type& other)
-	{
-		force.x += other.force.x;
-		force.y += other.force.y;
-		force.z += other.force.z;
-		return *this;
-	}
-	__device__
-		force_type& operator -= (const force_type& other)
-	{
-		force.x -= other.force.x;
-		force.y -= other.force.y;
-		force.z -= other.force.z;
-		return *this;
-	}
-	__device__
-		void reset()
-	{
-		force = { 0.0, 0.0, 0.0 };
-	}
-	friend std::ostream& operator <<(std::ostream& out, const force_type& to_out)
-	{
-		out << to_out.force.x << out.fill()
-			<< to_out.force.y << out.fill()
-			<< to_out.force.z << out.fill();
-		return out;
-	}
+	__device__ force_type& operator += (const force_type& other);
+	__device__ force_type& operator -= (const force_type& other);
+	__device__ void reset();
+	friend std::ostream& operator <<(std::ostream& out, const force_type& to_out);
 };
+
+
+__device__
+force_type& force_type::operator += (const force_type& other)
+{
+	force.x += other.force.x;
+	force.y += other.force.y;
+	force.z += other.force.z;
+	return *this;
+}
+
+__device__
+force_type& force_type::operator -= (const force_type& other)
+{
+	force.x -= other.force.x;
+	force.y -= other.force.y;
+	force.z -= other.force.z;
+	return *this;
+}
+
+__device__
+void force_type::reset()
+{
+	force = { 0.0, 0.0, 0.0 };
+}
+
+std::ostream& operator <<(std::ostream& out, const force_type& to_out)
+{
+	out << to_out.force.x << out.fill()
+		<< to_out.force.y << out.fill()
+		<< to_out.force.z;
+	return out;
+}
