@@ -10,10 +10,10 @@ using pos_type = float3;
 using vel_type = float3;
 
 //angular momentum type
-using mom_type = struct {};
+//using mom_type = struct {};
 
 //orientation(direction) type
-using dir_type = struct {};
+//using dir_type = struct {};
 
 //interaction type
 struct force_type : float3

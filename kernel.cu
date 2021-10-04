@@ -6,8 +6,7 @@
 #include "quantities.cuh"
 #include "particle.cuh"
 
-__constant__ time_type time_step = 1.0e-4;
-constexpr unsigned BLK_SIZE = 256;
+constexpr unsigned BLK_SIZE = 128;
 
 __global__
 void interpar_compute(particle* particles, force_type* forces)
@@ -22,46 +21,30 @@ void interpar_compute(particle* particles, force_type* forces)
 
 	__syncthreads();
 
-	for (unsigned index = lc_index; index != lc_index; )
-	{
-		if (++index == blockDim.x)
-			index = 0;
-
-		force_type cur_force = par_cache[lc_index].force_on(par_cache[index]);
-		force_cache[index] += cur_force;
-		force_cache[lc_index] -= cur_force;
-	}
+	for (unsigned index = lc_index;
+			   (++index %= blockDim.x) != lc_index; )
+		force_cache[lc_index] += par_cache[index].force_on(par_cache[lc_index]);
 
 	__shared__ particle par_temp[BLK_SIZE];
-	__shared__ force_type force_temp[BLK_SIZE];
 	for (unsigned other_index = blockDim.x * (gridDim.x - 1) + lc_index;
-		other_index != gl_index;
+		other_index != lc_index;
 		other_index -= blockDim.x)
 	{
-		par_temp[lc_index] = particles[other_index];
-		force_temp[lc_index] = forces[other_index];
+		if (other_index == gl_index)
+			continue;
 
+		par_temp[lc_index] = particles[other_index];
 		__syncthreads();
 
 		unsigned index = lc_index;
 		do
-		{
-			force_type cur_force = par_cache[lc_index].force_on(par_temp[index]);
-			force_temp[index] += cur_force;
-			force_cache[lc_index] -= cur_force;
-
-			if (++index == blockDim.x)
-				index = 0;
-		} while (index != lc_index);
-
-		__syncthreads();
-
-		//TODO memory transfer force_temp -> forces
+			force_cache[lc_index] += par_temp[index].force_on(par_cache[lc_index]);
+		while ((++index %= blockDim.x) != lc_index);
 	}
-	//TODO memory transfer force_cache -> forces
+	__syncthreads();
+	forces[gl_index] = force_cache[lc_index];
 }
 
-__inline__
 void compute(thrust::device_vector<particle>& particles,
 			 thrust::device_vector<force_type>& forces)
 {
