@@ -53,8 +53,6 @@ void interpar_compute(particle* particles, force_type* forces)
 	}
 	__syncthreads();
 	forces[gl_index] = force_cache[lc_index];
-
-	printf("Exit %i\n", lc_index);
 }
 
 void compute(thrust::device_vector<particle>& particles,
@@ -71,9 +69,6 @@ void advance(thrust::device_vector<particle>& particles,
 			 thrust::device_vector<force_type>& forces)
 {
 	assert(particles.size() == forces.size());
-	thrust::for_each_n(
-		thrust::make_zip_iterator(thrust::make_tuple(particles.begin(), forces.begin())),
-		particles.size(),
 	auto begin = thrust::make_zip_iterator(thrust::make_tuple(particles.begin(), forces.begin())),
 		 end   = thrust::make_zip_iterator(thrust::make_tuple(particles.end(), forces.end()));
 	thrust::for_each(thrust::device, begin, end,
@@ -85,8 +80,6 @@ void advance(thrust::device_vector<particle>& particles,
 
 int main()
 {
-	thrust::device_vector<particle> pts(512);
-	thrust::device_vector<force_type> forces(512);
 	thrust::device_vector<particle> pts(1024 * 32);
 	thrust::device_vector<force_type> forces(1024 * 32);
 
