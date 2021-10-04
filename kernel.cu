@@ -12,7 +12,7 @@
 #include "quantities.cuh"
 #include "particle.cuh"
 
-constexpr unsigned BLK_SIZE = 32;
+constexpr unsigned BLK_SIZE = 256;
 
 __global__
 void interpar_compute(particle* particles, force_type* forces)
@@ -66,8 +66,9 @@ void advance(thrust::device_vector<particle>& particles,
 	thrust::device_vector<force_type>& forces)
 {
 	assert(particles.size() == forces.size());
-	thrust::for_each_n
-		(thrust::make_zip_iterator(thrust::make_tuple(particles.begin(), forces.begin())), particles.size(),
+	thrust::for_each_n(
+		thrust::make_zip_iterator(thrust::make_tuple(particles.begin(), forces.begin())),
+		particles.size(),
 		[] __device__(thrust::tuple<particle&, force_type&> tpl)
 		{
 			tpl.get<0>().advance(tpl.get<1>());
@@ -76,8 +77,8 @@ void advance(thrust::device_vector<particle>& particles,
 
 int main()
 {
-	thrust::device_vector<particle> pts(64);
-	thrust::device_vector<force_type> forces(64);
+	thrust::device_vector<particle> pts(512);
+	thrust::device_vector<force_type> forces(512);
 
 	compute(pts, forces);
 	advance(pts, forces);
