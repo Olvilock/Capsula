@@ -2,12 +2,13 @@
 
 #pragma once
 #include <vector_types.h>
+#include <ostream>
 
-using time_type = float;
+using time_type = double;
 
 //position and velocity types
-using pos_type = float3;
-using vel_type = float3;
+using pos_type = double3;
+using vel_type = double3;
 
 //angular momentum type
 //using mom_type = struct {};
@@ -18,7 +19,7 @@ using vel_type = float3;
 //interaction type
 struct force_type
 {
-	float3 force;
+	double3 force;
 	//float3 momentum;
 
 	__device__
@@ -36,5 +37,17 @@ struct force_type
 		force.y -= other.force.y;
 		force.z -= other.force.z;
 		return *this;
+	}
+	__device__
+		void reset()
+	{
+		force = { 0.0, 0.0, 0.0 };
+	}
+	friend std::ostream& operator <<(std::ostream& out, const force_type& to_out)
+	{
+		out << to_out.force.x << out.fill()
+			<< to_out.force.y << out.fill()
+			<< to_out.force.z << out.fill();
+		return out;
 	}
 };
