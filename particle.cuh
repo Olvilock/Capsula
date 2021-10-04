@@ -18,9 +18,6 @@ struct particle
 	__device__ void advance(force_type force);
 };
 
-#include <thrust/tuple.h>
-#include "particle.cuh"
-
 __device__
 force_type particle::force_on(const particle& other)
 {
