@@ -15,44 +15,33 @@
 #include "quantities.cuh"
 #include "particle.cuh"
 
-constexpr unsigned BLK_SIZE = 256;
+constexpr unsigned BLK_SIZE = 128;
 
+//Call with 1-dimensional block with blockDim.x == BLK_SIZE only
 __global__
 void interpar_compute(particle* particles, force_type* forces)
 {
+	unsigned local_id = threadIdx.x;
+	unsigned global_id = local_id + BLK_SIZE * blockIdx.x;
+	force_type force = forces[global_id];
+	particle par = particles[global_id];
+
 	__shared__ particle par_cache[BLK_SIZE];
-	__shared__ force_type force_cache[BLK_SIZE];
 
-	unsigned lc_index = threadIdx.x;
-	unsigned gl_index = threadIdx.x + blockIdx.x * blockDim.x;
-	par_cache[lc_index] = particles[gl_index];
-	force_cache[lc_index] = forces[gl_index];
-
-	__syncthreads();
-
-	for (unsigned index = lc_index;
-		(++index %= blockDim.x) != lc_index; )
-		force_cache[lc_index] += par_cache[index].force_on(par_cache[lc_index]);
-
-	__shared__ particle par_temp[BLK_SIZE];
-	for (unsigned other_index = blockDim.x * gridDim.x + lc_index;
-		other_index != lc_index; )
+	for (unsigned group_id = BLK_SIZE * gridDim.x + local_id;
+		group_id != local_id; )
 	{
-		other_index -= blockDim.x;
+		group_id -= BLK_SIZE;
 
-		if (other_index == gl_index)
-			continue;
-
-		par_temp[lc_index] = particles[other_index];
+		par_cache[local_id] = particles[group_id];
 		__syncthreads();
 
-		unsigned index = lc_index;
-		do
-			force_cache[lc_index] += par_temp[index].force_on(par_cache[lc_index]);
-		while ((++index %= blockDim.x) != lc_index);
+		for (unsigned index = local_id + BLK_SIZE - (group_id == global_id);
+			index != local_id; --index)
+			force += par_cache[index % BLK_SIZE].force_on(par);
 	}
-	__syncthreads();
-	forces[gl_index] = force_cache[lc_index];
+
+	forces[global_id] = force;
 }
 
 void compute(thrust::device_vector<particle>& particles,
@@ -80,12 +69,13 @@ void advance(thrust::device_vector<particle>& particles,
 
 int main()
 {
-	thrust::device_vector<particle> pts(1024 * 32);
-	thrust::device_vector<force_type> forces(1024 * 32);
+	thrust::device_vector<particle> pts(1024 * 512);
+	thrust::device_vector<force_type> forces(1024 * 512);
 
 	std::cout << "Computation started...\n";
 
 	compute(pts, forces);
+	/*
 	cudaDeviceSynchronize();
 
 	std::cout << "Advancing started...\n";
@@ -94,7 +84,7 @@ int main()
 
 	std::cout << "Ready!\n";
 
-	/*	Output the forces:
+	//	Output the forces:
 	thrust::host_vector<force_type> h_forces = forces;
 
 	for (force_type& force : h_forces)

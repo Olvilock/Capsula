@@ -29,4 +29,12 @@ struct force_type
 		force.z += other.force.z;
 		return *this;
 	}
+	__device__
+		force_type& operator -= (const force_type& other)
+	{
+		force.x -= other.force.x;
+		force.y -= other.force.y;
+		force.z -= other.force.z;
+		return *this;
+	}
 };
