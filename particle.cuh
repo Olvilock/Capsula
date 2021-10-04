@@ -2,7 +2,6 @@
 
 #pragma once
 #include "quantities.cuh"
-#include <stdio.h>
 
 struct particle
 {

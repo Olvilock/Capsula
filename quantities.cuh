@@ -16,22 +16,16 @@ using vel_type = float3;
 //using dir_type = struct {};
 
 //interaction type
-struct force_type : float3
+struct force_type
 {
+	float3 force;
+
 	__device__
 		force_type& operator += (const force_type& other)
 	{
-		x += other.x;
-		y += other.y;
-		z += other.z;
-		return *this;
-	}
-	__device__
-		force_type& operator -= (const force_type& other)
-	{
-		x -= other.x;
-		y -= other.y;
-		z -= other.z;
+		force.x += other.force.x;
+		force.y += other.force.y;
+		force.z += other.force.z;
 		return *this;
 	}
 };

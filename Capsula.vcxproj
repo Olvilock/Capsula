@@ -62,6 +62,9 @@
       <Defines>
       </Defines>
       <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
+      <AdditionalCompilerOptions>
+      </AdditionalCompilerOptions>
+      <AdditionalOptions>--expt-extended-lambda %(AdditionalOptions)</AdditionalOptions>
     </CudaCompile>
     <CudaLink />
   </ItemDefinitionGroup>
@@ -87,6 +90,9 @@
       <CodeGeneration>compute_61,sm_61</CodeGeneration>
       <Defines>NDEBUG</Defines>
       <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
+      <AdditionalCompilerOptions>
+      </AdditionalCompilerOptions>
+      <AdditionalOptions>--expt-extended-lambda %(AdditionalOptions)</AdditionalOptions>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
