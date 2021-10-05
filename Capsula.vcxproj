@@ -50,6 +50,9 @@
       <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalUsingDirectories>
+      </AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)\headers;$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -77,6 +80,9 @@
       <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalUsingDirectories>
+      </AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)\headers;$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -89,19 +95,29 @@
       <TargetMachinePlatform>64</TargetMachinePlatform>
       <CodeGeneration>compute_61,sm_61</CodeGeneration>
       <Defines>NDEBUG</Defines>
-      <GenerateRelocatableDeviceCode>false</GenerateRelocatableDeviceCode>
+      <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
       <AdditionalCompilerOptions>
       </AdditionalCompilerOptions>
       <AdditionalOptions>--expt-extended-lambda %(AdditionalOptions)</AdditionalOptions>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="kernel.cu" />
+    <CudaCompile Include="src\kernels.cu" />
+    <CudaCompile Include="src\particle_system.cu" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="constants.cuh" />
-    <ClInclude Include="particle.cuh" />
-    <ClInclude Include="quantities.cuh" />
+    <ClInclude Include="headers\constants.cuh" />
+    <ClInclude Include="headers\kernels\particle.cuh" />
+    <ClInclude Include="headers\kernels\particle_advancer.cuh" />
+    <ClInclude Include="headers\kernels\particle_system.cuh" />
+    <ClInclude Include="headers\kernels\quantities.cuh" />
+    <ClInclude Include="headers\particle_advancer.cuh" />
+    <ClInclude Include="headers\particle.cuh" />
+    <ClInclude Include="headers\particle_system.cuh" />
+    <ClInclude Include="headers\quantities.cuh" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
