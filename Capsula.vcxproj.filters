@@ -1,22 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CudaCompile Include="src\kernels.cu" />
-    <CudaCompile Include="src\particle_system.cu" />
+    <CudaCompile Include="src\kernels.cu">
+      <Filter>Source code</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\particle_system.cu">
+      <Filter>Source code</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headers\particle.cuh" />
-    <ClInclude Include="headers\quantities.cuh" />
-    <ClInclude Include="headers\kernels\compute_forces.cuh" />
-    <ClInclude Include="headers\kernels\particle_advancer.cuh" />
-    <ClInclude Include="headers\kernels\quantities.cuh" />
-    <ClInclude Include="headers\compute_forces.cuh" />
-    <ClInclude Include="headers\constants.cuh" />
-    <ClInclude Include="headers\kernels\particle.cuh" />
-    <ClInclude Include="headers\particle_advancer.cuh" />
-    <ClInclude Include="headers\particle_system.cuh" />
+    <ClInclude Include="headers\compute_forces.cuh">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\constants.cuh">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\kernels\compute_forces.cuh">
+      <Filter>Kernel files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\kernels\particle.cuh">
+      <Filter>Kernel files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\particle.cuh">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\particle_advancer.cuh">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\kernels\particle_advancer.cuh">
+      <Filter>Kernel files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\particle_system.cuh">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\kernels\quantities.cuh">
+      <Filter>Kernel files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\quantities.cuh">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
+    <Filter Include="Header files">
+      <UniqueIdentifier>{8e4a8fbe-fb77-4570-8647-e9a90e938e33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code">
+      <UniqueIdentifier>{80247e8d-8791-4c14-a90c-e21502977ba1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Kernel files">
+      <UniqueIdentifier>{21cdf18e-ad0c-464e-a26b-c10abcdb6049}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source code</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
