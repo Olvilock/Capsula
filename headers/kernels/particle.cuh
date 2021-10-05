@@ -19,5 +19,7 @@ force_type particle_type::force_on(const particle_type& other) const
 	double d = constants.sigma3 / rr * rSq;
 	return (constants.epsilon12 / rSq * d * (2d - 1)) * relativePos;
 	*/
+
+	//For initial debugging
 	return { 1.0, 2.0, 3.0 };
 }

@@ -1,11 +1,14 @@
 #pragma once
 
-#include "particle.cuh"
+#include <particle.cuh>
 
-struct particle_advancer
+template<typename particle, typename force>
+struct particle_advancer_template
 {
 	//calculate new state of particle_type
-	//constant.time_step will reside in __constant__ memory of GPU
+	//constants should reside in __constant__ memory of GPU
 	__device__
-	particle_type operator()(const particle_type& particle, force_type& force);
+	particle_type operator()(const particle& particle, force& force);
 };
+
+using particle_advancer = particle_advancer_template<particle_type, force_type>;

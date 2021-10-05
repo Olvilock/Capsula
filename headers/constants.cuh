@@ -1,6 +1,6 @@
 #pragma once
 
-#include "quantities.cuh"
+#include <quantities.cuh>
 
 struct constant_type
 {

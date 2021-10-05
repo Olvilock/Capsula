@@ -1,34 +1,32 @@
 #pragma once
 
-#include "quantities.cuh"
-#include "constants.cuh"
-#include "particle.cuh"
-#include "particle_advancer.cuh"
-
 #include <thrust/device_vector.h>
 #include <thrust/host_vector.h>
 
 #include <thrust/transform.h>
 #include <thrust/execution_policy.h>
 
+#include <particle_advancer.cuh>
+#include <compute_forces.cuh>
+
 constexpr unsigned BLK_SIZE = 128;
 
-//Call with 1-dimensional block with blockDim.x == BLK_SIZE only
-__global__
-void interpar_compute(const particle_type* particles,
-	force_type* forces,
-	unsigned* locks);
-
-class particle_system
+template<typename particle, typename force>
+class particle_system_template
 {
-	thrust::device_vector<particle_type> m_particles;
-	thrust::device_vector<force_type> m_forces;
-	particle_advancer m_advancer;
+	thrust::device_vector<particle> m_particles;
+	thrust::device_vector<force> m_forces;
+	particle_advancer_template<particle, force> m_advancer;
 public:
-	particle_system(size_t size);
+	particle_system_template(size_t size);
 	void advance();
 	void compute();
 
-	using particle_type = particle_type;
-	using force_type = force_type;
+	using particle_type = particle;
+	using force_type = force;
 };
+
+//Specify template for code generation;
+template class particle_system_template<particle_type, force_type>;
+
+using particle_system = particle_system_template<particle_type, force_type>;

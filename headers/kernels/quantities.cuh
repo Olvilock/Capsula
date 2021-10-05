@@ -42,6 +42,7 @@ void force_type::reset()
 	force = { 0.0, 0.0, 0.0 };
 }
 
+//For dedugging reasons
 std::ostream& operator <<(std::ostream& out, const force_type& to_out)
 {
 	out << to_out.force.x << out.fill()

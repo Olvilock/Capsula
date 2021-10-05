@@ -11,17 +11,10 @@ using time_type = double;
 using pos_type = double3;
 using vel_type = double3;
 
-//angular momentum type
-//using mom_type = struct {};
-
-//orientation(direction) type
-//using dir_type = struct {};
-
 //interaction type
 struct force_type
 {
 	double3 force;
-	//double3 momentum;
 
 	__device__ force_type& operator += (const force_type& other);
 	__device__ force_type& operator -= (const force_type& other);

@@ -106,10 +106,11 @@
     <CudaCompile Include="src\particle_system.cu" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\compute_forces.cuh" />
     <ClInclude Include="headers\constants.cuh" />
     <ClInclude Include="headers\kernels\particle.cuh" />
     <ClInclude Include="headers\kernels\particle_advancer.cuh" />
-    <ClInclude Include="headers\kernels\particle_system.cuh" />
+    <ClInclude Include="headers\kernels\compute_forces.cuh" />
     <ClInclude Include="headers\kernels\quantities.cuh" />
     <ClInclude Include="headers\particle_advancer.cuh" />
     <ClInclude Include="headers\particle.cuh" />

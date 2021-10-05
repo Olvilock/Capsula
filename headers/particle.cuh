@@ -1,7 +1,7 @@
 //particle_type properties & interaction
 
 #pragma once
-#include "quantities.cuh"
+#include <quantities.cuh>
 
 struct particle_type
 {

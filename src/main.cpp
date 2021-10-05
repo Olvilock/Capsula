@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "particle_system.cuh"
+#include <particle_system.cuh>
 
 int main()
 {

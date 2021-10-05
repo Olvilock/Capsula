@@ -6,8 +6,9 @@
   <ItemGroup>
     <ClInclude Include="headers\particle.cuh" />
     <ClInclude Include="headers\quantities.cuh" />
-    <ClInclude Include="headers\kernels\particle_system.cuh" />
+    <ClInclude Include="headers\kernels\compute_forces.cuh" />
     <ClInclude Include="headers\kernels\particle_advancer.cuh" />
     <ClInclude Include="headers\kernels\quantities.cuh" />
+    <ClInclude Include="headers\compute_forces.cuh" />
   </ItemGroup>
 </Project>
