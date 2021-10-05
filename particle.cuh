@@ -14,7 +14,7 @@ struct particle
 	__device__ force_type force_on(const particle& other);
 
 	//calculate new state of particle after time_step
-	//time_step will reside in __const__ memory of GPU
+	//constant.time_step will reside in __constant__ memory of GPU
 	__device__ void advance(force_type force);
 };
 

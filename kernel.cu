@@ -9,9 +9,7 @@
 #include <stdio.h>
 
 #include "quantities.cuh"
-
-__constant__ time_type time_step = 1e-5;
-
+#include "constants.cuh"
 #include "particle.cuh"
 
 constexpr unsigned BLK_SIZE = 128;

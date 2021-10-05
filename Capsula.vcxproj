@@ -99,6 +99,7 @@
     <CudaCompile Include="kernel.cu" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="constants.cuh" />
     <ClInclude Include="particle.cuh" />
     <ClInclude Include="quantities.cuh" />
   </ItemGroup>
