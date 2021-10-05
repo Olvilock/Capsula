@@ -89,7 +89,7 @@
       <TargetMachinePlatform>64</TargetMachinePlatform>
       <CodeGeneration>compute_61,sm_61</CodeGeneration>
       <Defines>NDEBUG</Defines>
-      <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
+      <GenerateRelocatableDeviceCode>false</GenerateRelocatableDeviceCode>
       <AdditionalCompilerOptions>
       </AdditionalCompilerOptions>
       <AdditionalOptions>--expt-extended-lambda %(AdditionalOptions)</AdditionalOptions>
