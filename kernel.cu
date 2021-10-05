@@ -7,9 +7,11 @@
 #include <thrust/execution_policy.h>
 
 #include <stdio.h>
-#include <iostream>
 
 #include "quantities.cuh"
+
+__constant__ time_type time_step = 1e-5;
+
 #include "particle.cuh"
 
 constexpr unsigned BLK_SIZE = 128;
