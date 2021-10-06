@@ -1,13 +1,9 @@
 ﻿//Implementation of kernel functions
 
-#include <quantities.cuh>
-#include <kernels/quantities.cuh>
+#define KERNELS
 
-#include <particle.cuh>
-#include <kernels/particle.cuh>
+#include <components/to_include.cuh>
 
-#include <particle_advancer.cuh>
-#include <kernels/particle_advancer.cuh>
+#undef KERNELS
 
-#include <compute_forces.cuh>
 #include <kernels/compute_forces.cuh>

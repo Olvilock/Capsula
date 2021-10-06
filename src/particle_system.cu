@@ -1,17 +1,18 @@
-//Implementation of particle_system_template
+//Implementation of particle_system
 
-#include <constants.cuh>
+#include <cuda_runtime.h>
+#include <device_launch_parameters.h>
+
 #include <particle_system.cuh>
+#include <components/to_include.cuh>
 
-__constant__ constant_type constants = { 0.0, 0.0, 0.0 };
-
-template<typename particle, typename force>
-particle_system_template<particle, force>::particle_system_template(size_t size) :
+template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
+particle_system<particle_t, advancer_t>::particle_system(size_t size) :
 	m_particles(size),
 	m_forces(size) {}
 
-template<typename particle, typename force>
-void particle_system_template<particle, force>::compute()
+template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
+void particle_system<particle_t, advancer_t>::compute()
 {
 	assert(m_particles.size() % BLK_SIZE == 0);
 	assert(m_particles.size() == m_forces.size());
@@ -21,14 +22,14 @@ void particle_system_template<particle, force>::compute()
 
 	std::lock_guard<std::mutex> lock_system(m_mutex);
 
-	compute_interparticle_forces<particle, force> <<< dim3(blk_dim, blk_dim), BLK_SIZE >>>
+	compute_interparticle_forces<particle_t> <<< dim3(blk_dim, blk_dim), BLK_SIZE >>>
 		(thrust::raw_pointer_cast(m_particles.data()),
 			thrust::raw_pointer_cast(m_forces.data()),
 			thrust::raw_pointer_cast(locks.data()));
 }
 
-template<typename particle, typename force>
-void particle_system_template<particle, force>::advance()
+template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
+void particle_system<particle_t, advancer_t>::advance()
 {
 	assert(m_particles.size() == m_forces.size());
 
