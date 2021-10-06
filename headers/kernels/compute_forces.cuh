@@ -1,26 +1,21 @@
 #pragma once
 
 #include <device_launch_parameters.h>
-
-#include <quantities.cuh>
-#include <constants.cuh>
-#include <particle.cuh>
 #include <particle_system.cuh>
 
-extern __constant__ constant_type constants;
-
 //Call with 1-dimensional block with blockDim.x == BLK_SIZE only
-template<typename particle, typename force>
-__global__ void compute_interparticle_forces(const particle* particles, force* forces, unsigned* locks)
+template</*particle*/typename particle_t>
+__global__ void compute_interparticle_forces
+	(const particle_t* particles, force_type<particle_t>* forces, unsigned* locks)
 {
 	unsigned local_id = threadIdx.x;
 	unsigned global_id = local_id + BLK_SIZE * blockIdx.x;
 	unsigned global_load = local_id + BLK_SIZE * blockIdx.y;
 
-	force frc{};
-	particle ptc = particles[global_id];
+	force_type<particle_t> frc{};
+	particle_t ptc = particles[global_id];
 
-	__shared__ particle ptc_cache[BLK_SIZE];
+	__shared__ particle_t ptc_cache[BLK_SIZE];
 	ptc_cache[local_id] = particles[global_load];
 	__syncthreads();
 

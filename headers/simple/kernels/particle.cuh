@@ -1,13 +1,10 @@
 #pragma once
 
 #include <device_launch_parameters.h>
-
-#include <quantities.cuh>
-#include <constants.cuh>
-#include <particle.cuh>
+#include "..\particle.cuh"
 
 __device__
-force_type particle_type::force_on(const particle_type& other) const
+simple_force simple_particle::force_on(const simple_particle& other) const
 {
 	/*
 	pos_type relativePos = other.m_position - m_position;

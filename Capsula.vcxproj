@@ -78,7 +78,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
@@ -105,16 +105,23 @@
     <CudaCompile Include="src\particle_system.cu" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\advancer_traits.cuh" />
     <ClInclude Include="headers\compute_forces.cuh" />
-    <ClInclude Include="headers\constants.cuh" />
-    <ClInclude Include="headers\kernels\particle.cuh" />
-    <ClInclude Include="headers\kernels\particle_advancer.cuh" />
+    <ClInclude Include="headers\LIBS.cuh" />
+    <ClInclude Include="headers\simple\compute_forces.cuh" />
+    <ClInclude Include="headers\simple\constants.cuh" />
+    <ClInclude Include="headers\include_NAME.cuh" />
+    <ClInclude Include="headers\simple\kernels\constants.cuh" />
+    <ClInclude Include="headers\simple\kernels\particle.cuh" />
+    <ClInclude Include="headers\simple\kernels\advancer.cuh" />
     <ClInclude Include="headers\kernels\compute_forces.cuh" />
-    <ClInclude Include="headers\kernels\quantities.cuh" />
-    <ClInclude Include="headers\particle_advancer.cuh" />
-    <ClInclude Include="headers\particle.cuh" />
+    <ClInclude Include="headers\simple\kernels\quantities.cuh" />
+    <ClInclude Include="headers\simple\advancer.cuh" />
+    <ClInclude Include="headers\simple\particle.cuh" />
     <ClInclude Include="headers\particle_system.cuh" />
-    <ClInclude Include="headers\quantities.cuh" />
+    <ClInclude Include="headers\particle_traits.cuh" />
+    <ClInclude Include="headers\simple\quantities.cuh" />
+    <ClInclude Include="headers\simple\particle_system.cuh" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
