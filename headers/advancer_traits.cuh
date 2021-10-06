@@ -1,7 +1,7 @@
 #pragma once
 
-// #include <concepts>
 #include <particle_traits.cuh>
+#include <concepts>
 
 template<typename advancer_t>
 struct advancer_traits

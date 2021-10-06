@@ -1,6 +1,6 @@
 #pragma once
 
-// #include <concepts>
+#include <concepts>
 
 template<typename particle_t>
 struct particle_traits
