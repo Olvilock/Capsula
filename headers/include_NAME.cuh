@@ -19,6 +19,7 @@
 #endif
 
 #include INCLUDE(NAME/particle_system)
+#include INCLUDE(NAME/compute_forces)
 
 #undef INCLUDE
 #undef NAME
