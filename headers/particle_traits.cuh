@@ -3,7 +3,11 @@
 // #include <concepts>
 
 template<typename particle_t>
-struct particle_traits;
+struct particle_traits
+{
+	using force_type = particle_t::force_type;
+	using constant_type = particle_t::constant_type;
+};
 
 template<typename particle_t>
 using force_type = typename particle_traits<particle_t>::force_type;

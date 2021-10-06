@@ -21,11 +21,3 @@ namespace simple
 		__device__ force force_on(const particle& other) const;
 	};
 }
-
-
-template<>
-struct particle_traits<simple::particle>
-{
-	using force_type = simple::force;
-	using constant_type = simple::constant;
-};

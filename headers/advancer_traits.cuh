@@ -4,7 +4,10 @@
 #include <particle_traits.cuh>
 
 template<typename advancer_t>
-struct advancer_traits;
+struct advancer_traits
+{
+	using particle_type = advancer_t::particle_type;
+};
 
 template<typename advancer_t>
 using particle_type = typename advancer_traits<advancer_t>::particle_type;
