@@ -2,7 +2,7 @@
 
 #define KERNELS
 
-#include <LIBS.cuh>
+#include <components/to_include.cuh>
 
 #undef KERNELS
 

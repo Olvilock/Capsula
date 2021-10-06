@@ -107,10 +107,10 @@
   <ItemGroup>
     <ClInclude Include="headers\advancer_traits.cuh" />
     <ClInclude Include="headers\compute_forces.cuh" />
-    <ClInclude Include="headers\LIBS.cuh" />
+    <ClInclude Include="headers\components\to_include.cuh" />
     <ClInclude Include="headers\simple\compute_forces.cuh" />
     <ClInclude Include="headers\simple\constants.cuh" />
-    <ClInclude Include="headers\include_NAME.cuh" />
+    <ClInclude Include="headers\components\include_name.cuh" />
     <ClInclude Include="headers\simple\kernels\constants.cuh" />
     <ClInclude Include="headers\simple\kernels\particle.cuh" />
     <ClInclude Include="headers\simple\kernels\advancer.cuh" />

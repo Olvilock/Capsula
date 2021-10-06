@@ -7,21 +7,25 @@
 #include "quantities.cuh"
 #include "constants.cuh"
 
-struct simple_particle
+namespace simple
 {
-	pos_type m_position;
-	vel_type m_velocity;
+	struct particle
+	{
+		pos_type m_position;
+		vel_type m_velocity;
 
-	using constant_type = simple_constant;
-	using force_type = constant_type;
+		using force_type = force;
+		using constant_type = constant;
 
-	//Calculate force created ON other particle_type
-	__device__ simple_force force_on(const simple_particle& other) const;
-};
+		//Calculate force created ON other particle_type
+		__device__ force force_on(const particle& other) const;
+	};
+}
+
 
 template<>
-struct particle_traits<simple_particle>
+struct particle_traits<simple::particle>
 {
-	using force_type = simple_force;
-	using constant_type = simple_constant;
+	using force_type = simple::force;
+	using constant_type = simple::constant;
 };

@@ -2,4 +2,4 @@
 
 #include "..\constants.cuh"
 
-__constant__ simple_constant constants = { 0.0, 0.0, 0.0 };
+__constant__ simple::constant constants = { 0.0, 0.0, 0.0 };

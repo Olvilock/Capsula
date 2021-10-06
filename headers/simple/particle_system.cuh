@@ -5,7 +5,10 @@
 #include "particle.cuh"
 #include "advancer.cuh"
 
-//Specify template for code generation;
-template struct particle_system<simple_particle, simple_advancer>;
+namespace simple
+{
+	//Specify template for code generation;
+	template struct particle_system<particle, advancer>;
 
-using simple_system = particle_system<simple_particle, simple_advancer>;
+	using system = particle_system<particle, advancer>;
+}

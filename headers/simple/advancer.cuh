@@ -6,16 +6,19 @@
 #include "quantities.cuh"
 #include "particle.cuh"
 
-struct simple_advancer
+namespace simple
 {
-	//calculate new state of particle_type
-	//constants should reside in __constant__ memory of GPU
-	__device__
-	simple_particle operator()(const simple_particle& particle, simple_force& force);
-};
+	struct advancer
+	{
+		//calculate new state of particle_type
+		//constants should reside in __constant__ memory of GPU
+		__device__
+			particle operator()(const particle&, force&);
+	};
+}
 
 template<>
-struct advancer_traits<simple_advancer>
+struct advancer_traits<simple::advancer>
 {
-	using particle_type = simple_particle;
+	using particle_type = simple::particle;
 };

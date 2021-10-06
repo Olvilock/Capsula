@@ -4,10 +4,13 @@
 #include "..\advancer.cuh"
 #include "..\constants.cuh"
 
-__device__
-simple_particle simple_advancer::operator()
-	(const simple_particle& particle, simple_force& force)
+namespace simple
 {
-	force.reset();
-	return particle;
+	__device__
+	particle advancer::operator()
+		(const particle& ptc, force& frc)
+	{
+		frc.reset();
+		return ptc;
+	}
 }

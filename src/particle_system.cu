@@ -4,7 +4,7 @@
 #include <device_launch_parameters.h>
 
 #include <particle_system.cuh>
-#include <LIBS.cuh>
+#include <components/to_include.cuh>
 
 template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
 particle_system<particle_t, advancer_t>::particle_system(size_t size) :
