@@ -5,21 +5,24 @@
 #include <vector_types.h>
 #include <ostream>
 
-using time_type = double;
-
-//position and velocity types
-using pos_type = double3;
-using vel_type = double3;
-
-//interaction type
-struct simple_force
+namespace simple
 {
-	double3 force;
+	using time_type = double;
 
-	__device__ simple_force& operator += (const simple_force& other);
-	__device__ simple_force& operator -= (const simple_force& other);
+	//position and velocity types
+	using pos_type = double3;
+	using vel_type = double3;
 
-	__device__ void reset();
+	//interaction type
+	struct force
+	{
+		double3 frc;
 
-	friend std::ostream& operator <<(std::ostream& out, const simple_force& to_out);
-};
+		__device__ force& operator -= (const force& other);
+		__device__ force& operator += (const force& other);
+
+		__device__ void reset();
+
+		friend std::ostream& operator <<(std::ostream& out, const force& to_out);
+	};
+}

@@ -2,9 +2,12 @@
 
 #include "quantities.cuh"
 
-struct simple_constant
+namespace simple
 {
-	time_type time_step;
-	double epsilon12; //12 * epsilon
-	double sigma3; //sigma ^ 3
-};
+	struct constant
+	{
+		simple::time_type time_step;
+		double epsilon12; //12 * epsilon
+		double sigma3; //sigma ^ 3
+	};
+}
