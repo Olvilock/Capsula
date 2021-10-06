@@ -12,8 +12,6 @@
 
 #include <mutex>
 
-constexpr unsigned BLK_SIZE = 128;
-
 template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
 struct particle_system
 {
