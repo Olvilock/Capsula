@@ -4,7 +4,7 @@
 
 int main()
 {
-	particle_system par(1024 * 32);
+	simple_system par(1024 * 32);
 	for (int i = 0; i < 10; ++i)
 	{
 		std::cout << "Computation " << i << " started...\n";

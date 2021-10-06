@@ -12,14 +12,14 @@ using pos_type = double3;
 using vel_type = double3;
 
 //interaction type
-struct force_type
+struct simple_force
 {
 	double3 force;
 
-	__device__ force_type& operator += (const force_type& other);
-	__device__ force_type& operator -= (const force_type& other);
+	__device__ simple_force& operator += (const simple_force& other);
+	__device__ simple_force& operator -= (const simple_force& other);
 
 	__device__ void reset();
 
-	friend std::ostream& operator <<(std::ostream& out, const force_type& to_out);
+	friend std::ostream& operator <<(std::ostream& out, const simple_force& to_out);
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <quantities.cuh>
+#include "quantities.cuh"
 
-struct constant_type
+struct simple_constant
 {
 	time_type time_step;
 	double epsilon12; //12 * epsilon
