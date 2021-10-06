@@ -4,17 +4,17 @@
 
 #define LIB_INCLUDE(LIB_NAME) <LIB_NAME.cuh>
 
-#ifdef KERNELS
+#ifdef COMPUTE_KERNELS
 
 #include LIB_INCLUDE(LIB_NAME/kernels/quantities)
 #include LIB_INCLUDE(LIB_NAME/kernels/constants)
 #include LIB_INCLUDE(LIB_NAME/kernels/particle)
-#include LIB_INCLUDE(LIB_NAME/kernels/advancer)
 
 #include LIB_INCLUDE(LIB_NAME/compute_forces)
 
 #else 
 
+#include LIB_INCLUDE(LIB_NAME/kernels/advancer)
 #include LIB_INCLUDE(LIB_NAME/particle_system)
 
 #endif
