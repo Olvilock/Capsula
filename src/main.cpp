@@ -5,7 +5,7 @@
 int main()
 {
 	simple::system par(1024 * 32);
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 100; ++i)
 	{
 		std::cout << "Computation " << i << " started...\n";
 		par.compute();

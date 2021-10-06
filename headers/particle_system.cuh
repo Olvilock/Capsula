@@ -8,17 +8,11 @@
 
 #include <particle_traits.cuh>
 #include <advancer_traits.cuh>
+#include <compute_forces.cuh>
 
 #include <mutex>
 
 constexpr unsigned BLK_SIZE = 128;
-
-//Call with 1-dimensional block with blockDim.x == BLK_SIZE only
-template</*particle*/typename particle_t>
-__global__ void compute_interparticle_forces
-(const particle_t* particles,
-	typename force_type<particle_t>* forces,
-	unsigned* locks);
 
 template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
 struct particle_system
