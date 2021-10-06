@@ -101,7 +101,7 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="src\kernels.cu" />
+    <CudaCompile Include="src\compute_kernels.cu" />
     <CudaCompile Include="src\particle_system.cu" />
   </ItemGroup>
   <ItemGroup>
