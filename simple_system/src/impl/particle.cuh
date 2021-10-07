@@ -1,7 +1,7 @@
 #pragma once
 
 #include <device_launch_parameters.h>
-#include "..\particle.cuh"
+#include <simple/particle.cuh>
 
 namespace simple
 {

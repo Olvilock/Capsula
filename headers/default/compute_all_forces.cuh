@@ -1,8 +1,7 @@
 #pragma once
 
-#include <device_launch_parameters.h>
-
 #include <particle_traits.cuh>
+#include <device_launch_parameters.h>
 
 constexpr unsigned BLK_SIZE = 128;
 

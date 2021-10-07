@@ -3,7 +3,7 @@
 #include <cuda_runtime.h>
 #include <device_launch_parameters.h>
 
-#include "..\quantities.cuh"
+#include <simple/quantities.cuh>
 
 namespace simple
 {

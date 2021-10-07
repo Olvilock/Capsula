@@ -3,8 +3,7 @@
 #include <cuda_runtime.h>
 #include <device_launch_parameters.h>
 
-#include <particle_system.cuh>
-#include <components/to_include.cuh>
+#include <default/particle_system.cuh>
 
 template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
 particle_system<particle_t, advancer_t>::particle_system(size_t size) :
@@ -22,7 +21,7 @@ void particle_system<particle_t, advancer_t>::compute()
 
 	std::lock_guard<std::mutex> lock_system(m_mutex);
 
-	compute_interparticle_forces<particle_t> <<< dim3(blk_dim, blk_dim), BLK_SIZE >>>
+	compute_interparticle_forces<particle_t> << < dim3(blk_dim, blk_dim), BLK_SIZE >> >
 		(thrust::raw_pointer_cast(m_particles.data()),
 			thrust::raw_pointer_cast(m_forces.data()),
 			thrust::raw_pointer_cast(locks.data()));

@@ -82,7 +82,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)\headers;$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)headers;$(SolutionDir)simple_system/headers;$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -101,27 +101,23 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="src\compute_kernels.cu" />
-    <CudaCompile Include="src\particle_system.cu" />
+    <CudaCompile Include="headers\default\impl\compute_all_forces.cuh" />
+    <CudaCompile Include="headers\default\impl\particle_system.cuh" />
+    <CudaCompile Include="simple_system\src\simple.cu" />
+    <CudaCompile Include="headers\default\particle_system.cuh" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\advancer_traits.cuh" />
-    <ClInclude Include="headers\compute_forces.cuh" />
-    <ClInclude Include="headers\components\to_include.cuh" />
-    <ClInclude Include="headers\simple\compute_forces.cuh" />
-    <ClInclude Include="headers\simple\constants.cuh" />
-    <ClInclude Include="headers\components\include_name.cuh" />
-    <ClInclude Include="headers\simple\kernels\constants.cuh" />
-    <ClInclude Include="headers\simple\kernels\particle.cuh" />
-    <ClInclude Include="headers\simple\kernels\advancer.cuh" />
-    <ClInclude Include="headers\kernels\compute_forces.cuh" />
-    <ClInclude Include="headers\simple\kernels\quantities.cuh" />
-    <ClInclude Include="headers\simple\advancer.cuh" />
-    <ClInclude Include="headers\simple\particle.cuh" />
-    <ClInclude Include="headers\particle_system.cuh" />
+    <ClInclude Include="simple_system\headers\simple\constants.cuh" />
+    <ClInclude Include="simple_system\src\impl\constants.cuh" />
+    <ClInclude Include="simple_system\src\impl\particle.cuh" />
+    <ClInclude Include="simple_system\src\impl\advancer.cuh" />
+    <ClInclude Include="simple_system\src\impl\quantities.cuh" />
+    <ClInclude Include="simple_system\headers\simple\advancer.cuh" />
+    <ClInclude Include="simple_system\headers\simple\particle.cuh" />
     <ClInclude Include="headers\particle_traits.cuh" />
-    <ClInclude Include="headers\simple\quantities.cuh" />
-    <ClInclude Include="headers\simple\particle_system.cuh" />
+    <ClInclude Include="simple_system\headers\simple\quantities.cuh" />
+    <ClInclude Include="simple_system\headers\simple\particle_system.cuh" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

@@ -8,7 +8,7 @@
 
 #include <particle_traits.cuh>
 #include <advancer_traits.cuh>
-#include <compute_forces.cuh>
+#include <default/compute_all_forces.cuh>
 
 #include <mutex>
 
