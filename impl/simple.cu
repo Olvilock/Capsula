@@ -11,6 +11,6 @@
 
 namespace simple
 {
-	//Specify template for code generation;
+	//Explicit instantiation definition
 	template struct particle_system<particle>;
 }
