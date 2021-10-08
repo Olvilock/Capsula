@@ -1,7 +1,7 @@
 #pragma once
 
 #include <device_launch_parameters.h>
-#include <default/compute_all_forces.cuh>
+#include <general/compute_all_forces.cuh>
 
 //Call with 1-dimensional block with blockDim.x == BLK_SIZE only
 template</*particle*/typename particle_t>

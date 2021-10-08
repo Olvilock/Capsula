@@ -1,8 +1,8 @@
 #pragma once
 
 #include <device_launch_parameters.h>
-#include "simple/advancer.cuh"
-#include "simple/constants.cuh"
+#include <simple/advancer.cuh>
+#include <simple/constants.cuh>
 
 namespace simple
 {

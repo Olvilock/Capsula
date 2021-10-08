@@ -1,41 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CudaCompile Include="simple_system\src\simple.cu">
+    <CudaCompile Include="impl\simple.cu">
       <Filter>Source code</Filter>
     </CudaCompile>
-    <CudaCompile Include="headers\default\particle_system.cuh">
+    <CudaCompile Include="headers\general\particle_system.cuh">
       <Filter>Source code</Filter>
     </CudaCompile>
-    <CudaCompile Include="headers\default\impl\compute_all_forces.cuh" />
-    <CudaCompile Include="headers\default\impl\particle_system.cuh" />
+    <CudaCompile Include="impl\general\compute_all_forces.cuh" />
+    <CudaCompile Include="impl\general\particle_system.cuh" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="simple_system\headers\simple\constants.cuh">
+    <ClInclude Include="headers\simple\constants.cuh">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\default\compute_all_forces.cuh">
+    <ClInclude Include="impl\simple\particle.cuh">
       <Filter>Kernel files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_system\src\impl\particle.cuh">
-      <Filter>Kernel files</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_system\headers\simple\particle.cuh">
+    <ClInclude Include="headers\simple\particle.cuh">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_system\headers\simple\advancer.cuh">
+    <ClInclude Include="headers\simple\advancer.cuh">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_system\src\impl\advancer.cuh">
+    <ClInclude Include="impl\simple\advancer.cuh">
       <Filter>Kernel files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_system\src\impl\quantities.cuh">
+    <ClInclude Include="impl\simple\quantities.cuh">
       <Filter>Kernel files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_system\headers\simple\quantities.cuh">
+    <ClInclude Include="headers\simple\quantities.cuh">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_system\src\impl\constants.cuh">
+    <ClInclude Include="impl\simple\constants.cuh">
       <Filter>Kernel files</Filter>
     </ClInclude>
     <ClInclude Include="headers\advancer_traits.cuh">
@@ -44,7 +41,7 @@
     <ClInclude Include="headers\particle_traits.cuh">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_system\headers\simple\particle_system.cuh">
+    <ClInclude Include="headers\simple\particle_system.cuh">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

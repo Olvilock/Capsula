@@ -1,7 +1,7 @@
 #pragma once
 
-#include <default/particle_system.cuh>
-#include <default/compute_all_forces.cuh>
+#include <general/particle_system.cuh>
+#include <general/compute_all_forces.cuh>
 
 #include "particle.cuh"
 #include "advancer.cuh"

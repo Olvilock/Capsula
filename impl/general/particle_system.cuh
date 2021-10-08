@@ -3,7 +3,7 @@
 #include <cuda_runtime.h>
 #include <device_launch_parameters.h>
 
-#include <default/particle_system.cuh>
+#include <general/particle_system.cuh>
 
 template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
 particle_system<particle_t, advancer_t>::particle_system(size_t size) :
