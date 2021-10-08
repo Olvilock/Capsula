@@ -21,6 +21,11 @@ namespace simple
 	{
 		double3 frc;
 
+		force() = default;
+
+		__device__
+		force(const double3&);
+
 		__device__ force& operator -= (const force& other);
 		__device__ force& operator += (const force& other);
 

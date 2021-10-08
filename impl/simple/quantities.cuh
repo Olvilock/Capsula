@@ -8,6 +8,11 @@
 namespace simple
 {
 	__device__
+		double sqr(const double3& val)
+	{
+		return val.x * val.x + val.y * val.y + val.z * val.z;
+	}
+	__device__
 		double3 operator -(const double3& one, const double3& other)
 	{
 		return { one.x - other.x, one.y - other.y, one.z - other.z };
@@ -18,6 +23,9 @@ namespace simple
 	{
 		return { scalar * vector.x, scalar * vector.y, scalar * vector.z };
 	}
+
+	__device__
+	force::force(const double3& d3) : frc(d3) {}
 
 	__device__
 		force& force::operator += (const force& other)

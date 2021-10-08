@@ -2,4 +2,8 @@
 
 #include <simple/constants.cuh>
 
-__constant__ simple::constant constants = { 0.0, 0.0, 0.0 };
+namespace simple
+{
+	__device__ __constant__
+	constant constants = { 0.0, 0.0, 0.0 };
+}
