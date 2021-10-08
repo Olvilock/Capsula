@@ -6,20 +6,20 @@
 #include <general/particle_system.cuh>
 
 #ifdef __CUDACC__
-template<typename advancer_t>
+template<typename particlce_t>
 #else
-template<advancable advancer_t>
+template<proper_particle particlce_t>
 #endif
-particle_system<advancer_t>::particle_system(size_t size) :
+particle_system<particlce_t>::particle_system(size_t size) :
 	m_particles(size),
 	m_forces(size) {}
 
 #ifdef __CUDACC__
-template<typename advancer_t>
+template<typename particlce_t>
 #else
-template<advancable advancer_t>
+template<proper_particle particlce_t>
 #endif
-void particle_system<advancer_t>::compute()
+void particle_system<particlce_t>::compute()
 {
 	assert(m_particles.size() % BLK_SIZE<particle_type>() == 0);
 	assert(m_particles.size() == m_forces.size());
@@ -36,11 +36,11 @@ void particle_system<advancer_t>::compute()
 }
 
 #ifdef __CUDACC__
-template<typename advancer_t>
+template<typename particlce_t>
 #else
-template<advancable advancer_t>
+template<proper_particle particlce_t>
 #endif
-void particle_system<advancer_t>::advance()
+void particle_system<particlce_t>::advance()
 {
 	assert(m_particles.size() == m_forces.size());
 

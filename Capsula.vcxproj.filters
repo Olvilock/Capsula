@@ -15,9 +15,6 @@
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headers\advancer_traits.cuh">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\particle_traits.cuh">
       <Filter>Header files</Filter>
     </ClInclude>

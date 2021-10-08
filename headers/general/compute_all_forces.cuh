@@ -6,7 +6,7 @@
 #ifdef __CUDACC__
 template<typename particle_t>
 #else
-template<interactable_particle particle_t>
+template<proper_particle particle_t>
 #endif
 constexpr unsigned BLK_SIZE();
 
@@ -14,7 +14,7 @@ constexpr unsigned BLK_SIZE();
 #ifdef __CUDACC__
 template<typename particle_t>
 #else
-template<interactable_particle particle_t>
+template<proper_particle particle_t>
 #endif
 __global__ void compute_interparticle_forces
-(const particle_t* particles, force_type<particle_t>* forces, unsigned* locks);
+(const particle_t* particles, force_t<particle_t>* forces, unsigned* locks);

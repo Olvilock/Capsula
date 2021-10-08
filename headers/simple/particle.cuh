@@ -2,10 +2,8 @@
 
 #pragma once
 
-#include <particle_traits.cuh>
-
 #include "quantities.cuh"
-#include "constants.cuh"
+#include "advancer.cuh"
 
 namespace simple
 {
@@ -15,7 +13,7 @@ namespace simple
 		vel_type m_velocity;
 
 		using force_type = force;
-		using constant_type = constant;
+		using advancer_type = advancer;
 
 		//Calculate force created ON other particle_type
 		__device__ force force_on(const particle& other) const;

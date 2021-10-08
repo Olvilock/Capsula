@@ -6,24 +6,24 @@ template<typename particle_t>
 struct particle_traits
 {
 	using force_type = particle_t::force_type;
-	using constant_type = particle_t::constant_type;
+	using advancer_type = particle_t::advancer_type;
 };
 
 template<typename particle_t>
-using force_type = typename particle_traits<particle_t>::force_type;
+using force_t = typename particle_traits<particle_t>::force_type;
 
 template<typename particle_t>
-using constant_type = typename particle_traits<particle_t>::constant_type;
+using advancer_t = typename particle_traits<particle_t>::advancer_type;
 
 #ifndef __CUDACC__
 
 template<typename particle_t>
-concept interactable_particle = 
-	std::copy_constructible<constant_type<particle_t> > &&
-	std::default_initializable<force_type<particle_t> > &&
-	requires(force_type<particle_t> a, force_type<particle_t> b)
+concept proper_particle = 
+	std::default_initializable<force_t<particle_t> > &&
+	requires (particle_t& ptc, force_t<particle_t> frc, advancer_t<particle_t> adv)
 	{
-		{ a += b } -> std::same_as<force_type<particle_t> &>;
+		{ frc += frc } -> std::same_as<force_t<particle_t>&>;
+		{ adv(ptc, frc) } -> std::same_as<particle_t>;
 	};
 
 #endif
