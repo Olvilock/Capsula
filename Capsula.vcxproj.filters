@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CudaCompile Include="impl\general\compute_all_forces.cuh">
-      <Filter>Implementation files\general</Filter>
-    </CudaCompile>
-    <CudaCompile Include="impl\general\particle_system.cuh">
-      <Filter>Implementation files\general</Filter>
-    </CudaCompile>
     <CudaCompile Include="headers\general\particle_system.cuh">
-      <Filter>Header files\general</Filter>
+      <Filter>general\Header files</Filter>
     </CudaCompile>
     <CudaCompile Include="impl\simple.cu">
-      <Filter>Implementation files</Filter>
+      <Filter>simple\Implementation files</Filter>
+    </CudaCompile>
+    <CudaCompile Include="impl\general\compute_all_forces.cuh">
+      <Filter>general\Implementation files</Filter>
+    </CudaCompile>
+    <CudaCompile Include="impl\general\particle_system.cuh">
+      <Filter>general\Implementation files</Filter>
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
@@ -21,35 +21,35 @@
     <ClInclude Include="headers\particle_traits.cuh">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="impl\simple\advancer.cuh">
-      <Filter>Implementation files\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="impl\simple\constants.cuh">
-      <Filter>Implementation files\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="impl\simple\particle.cuh">
-      <Filter>Implementation files\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="impl\simple\quantities.cuh">
-      <Filter>Implementation files\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\simple\particle_system.cuh">
-      <Filter>Header files\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\simple\particle.cuh">
-      <Filter>Header files\simple</Filter>
+    <ClInclude Include="headers\general\compute_all_forces.cuh">
+      <Filter>general\Header files</Filter>
     </ClInclude>
     <ClInclude Include="headers\simple\advancer.cuh">
-      <Filter>Header files\simple</Filter>
+      <Filter>simple\Header files</Filter>
     </ClInclude>
     <ClInclude Include="headers\simple\constants.cuh">
-      <Filter>Header files\simple</Filter>
+      <Filter>simple\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\simple\particle.cuh">
+      <Filter>simple\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\simple\particle_system.cuh">
+      <Filter>simple\Header files</Filter>
     </ClInclude>
     <ClInclude Include="headers\simple\quantities.cuh">
-      <Filter>Header files\simple</Filter>
+      <Filter>simple\Header files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\general\compute_all_forces.cuh">
-      <Filter>Header files\general</Filter>
+    <ClInclude Include="impl\simple\advancer.cuh">
+      <Filter>simple\Implementation files</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\simple\constants.cuh">
+      <Filter>simple\Implementation files</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\simple\particle.cuh">
+      <Filter>simple\Implementation files</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\simple\quantities.cuh">
+      <Filter>simple\Implementation files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -59,20 +59,23 @@
     <Filter Include="Source code">
       <UniqueIdentifier>{80247e8d-8791-4c14-a90c-e21502977ba1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header files\general">
-      <UniqueIdentifier>{bb2968b8-d8a3-4d53-a135-ed242a8fa564}</UniqueIdentifier>
+    <Filter Include="simple">
+      <UniqueIdentifier>{4069f1f8-6fe9-409b-908b-0a347e3bd8a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Implementation files">
-      <UniqueIdentifier>{21cdf18e-ad0c-464e-a26b-c10abcdb6049}</UniqueIdentifier>
+    <Filter Include="simple\Header files">
+      <UniqueIdentifier>{fde768e2-d4f5-4960-8e0e-ccb1deead9f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Implementation files\simple">
-      <UniqueIdentifier>{e8344b5a-54da-4f4b-96a3-521e3a15880c}</UniqueIdentifier>
+    <Filter Include="simple\Implementation files">
+      <UniqueIdentifier>{77dfe224-c32a-4768-89ef-96b10e2e854e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Implementation files\general">
+    <Filter Include="general">
       <UniqueIdentifier>{03ab2659-7124-47e8-835e-565d62c5bf86}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header files\simple">
-      <UniqueIdentifier>{4069f1f8-6fe9-409b-908b-0a347e3bd8a8}</UniqueIdentifier>
+    <Filter Include="general\Implementation files">
+      <UniqueIdentifier>{21cdf18e-ad0c-464e-a26b-c10abcdb6049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="general\Header files">
+      <UniqueIdentifier>{bb2968b8-d8a3-4d53-a135-ed242a8fa564}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
