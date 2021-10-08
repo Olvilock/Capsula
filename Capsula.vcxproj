@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\advancer_traits.cuh" />
+    <ClInclude Include="headers\general\compute_all_forces.cuh" />
     <ClInclude Include="headers\simple\constants.cuh" />
     <ClInclude Include="impl\simple\constants.cuh" />
     <ClInclude Include="impl\simple\particle.cuh" />
