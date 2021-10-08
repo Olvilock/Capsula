@@ -29,5 +29,5 @@ private:
 	thrust::device_vector<particle_type> m_particles;
 	thrust::device_vector<force_type> m_forces;
 	advancer_type m_advancer;
-	std::mutex m_mutex;
+	bool m_ready;
 };

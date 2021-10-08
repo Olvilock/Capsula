@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="headers\general\compute_all_forces.cuh" />
     <ClInclude Include="headers\simple\constants.cuh" />
+    <ClInclude Include="headers\simple\wall.cuh" />
     <ClInclude Include="impl\simple\constants.cuh" />
     <ClInclude Include="impl\simple\particle.cuh" />
     <ClInclude Include="impl\simple\advancer.cuh" />
@@ -124,6 +125,7 @@
     <ClInclude Include="headers\particle_traits.cuh" />
     <ClInclude Include="headers\simple\quantities.cuh" />
     <ClInclude Include="headers\simple\particle_system.cuh" />
+    <ClInclude Include="impl\simple\wall.cuh" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

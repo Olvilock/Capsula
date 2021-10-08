@@ -48,6 +48,8 @@
     <ClInclude Include="impl\simple\quantities.cuh">
       <Filter>simple\Implementation files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\simple\wall.cuh" />
+    <ClInclude Include="impl\simple\wall.cuh" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

@@ -21,18 +21,20 @@ template<proper_particle particlce_t>
 #endif
 void particle_system<particlce_t>::compute()
 {
+	if (m_ready)
+		return;
+
 	assert(m_particles.size() % BLK_SIZE<particle_type>() == 0);
-	assert(m_particles.size() == m_forces.size());
 
 	unsigned blk_dim = m_particles.size() / BLK_SIZE<particle_type>();
 	thrust::device_vector<unsigned> locks(blk_dim, blk_dim);
-
-	std::lock_guard<std::mutex> lock_system(m_mutex);
 
 	compute_interparticle_forces<particle_type> <<< dim3(blk_dim, blk_dim), BLK_SIZE<particle_type>() >>>
 		(thrust::raw_pointer_cast(m_particles.data()),
 			thrust::raw_pointer_cast(m_forces.data()),
 			thrust::raw_pointer_cast(locks.data()));
+
+	m_ready = true;
 }
 
 #ifdef __CUDACC__
@@ -42,9 +44,7 @@ template<proper_particle particlce_t>
 #endif
 void particle_system<particlce_t>::advance()
 {
-	assert(m_particles.size() == m_forces.size());
-
-	std::lock_guard<std::mutex> lock_system(m_mutex);
+	compute();
 
 	thrust::transform(thrust::device,
 		m_particles.cbegin(),
@@ -52,4 +52,6 @@ void particle_system<particlce_t>::advance()
 		m_forces.begin(),
 		m_particles.begin(),
 		m_advancer);
+
+	m_ready = false;
 }

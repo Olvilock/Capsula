@@ -13,6 +13,9 @@ namespace simple
 	using pos_type = double3;
 	using vel_type = double3;
 
+	//direction type
+	using dir_type = double3;
+
 	//interaction type
 	struct force
 	{
