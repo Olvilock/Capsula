@@ -12,7 +12,11 @@
 
 #include <mutex>
 
-template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
+#ifdef __CUDACC__
+template<typename particle_t, typename advancer_t>
+#else
+template<particle particle_t, advancer advancer_t>
+#endif
 struct particle_system
 {
 	particle_system(size_t size);
@@ -23,7 +27,7 @@ struct particle_system
 	using force_type = force_type<particle_type>;
 	using constant_type = constant_type<particle_type>;
 private:
-	thrust::device_vector<particle_t> m_particles;
+	thrust::device_vector<particle_type> m_particles;
 	thrust::device_vector<force_type> m_forces;
 	advancer_t m_advancer;
 	std::mutex m_mutex;

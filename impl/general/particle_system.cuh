@@ -5,12 +5,20 @@
 
 #include <general/particle_system.cuh>
 
-template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
+#ifdef __CUDACC__
+template<typename particle_t, typename advancer_t>
+#else
+template<particle particle_t, advancer advancer_t>
+#endif
 particle_system<particle_t, advancer_t>::particle_system(size_t size) :
 	m_particles(size),
 	m_forces(size) {}
 
-template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
+#ifdef __CUDACC__
+template<typename particle_t, typename advancer_t>
+#else
+template<particle particle_t, advancer advancer_t>
+#endif
 void particle_system<particle_t, advancer_t>::compute()
 {
 	assert(m_particles.size() % BLK_SIZE == 0);
@@ -27,7 +35,11 @@ void particle_system<particle_t, advancer_t>::compute()
 			thrust::raw_pointer_cast(locks.data()));
 }
 
-template</*particle*/ typename particle_t, /*advancer*/ typename advancer_t>
+#ifdef __CUDACC__
+template<typename particle_t, typename advancer_t>
+#else
+template<particle particle_t, advancer advancer_t>
+#endif
 void particle_system<particle_t, advancer_t>::advance()
 {
 	assert(m_particles.size() == m_forces.size());
