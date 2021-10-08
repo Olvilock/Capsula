@@ -21,8 +21,8 @@ template<proper_particle particlce_t>
 #endif
 void particle_system<particlce_t>::compute()
 {
-	/*if (m_ready)
-		return;*/
+	if (m_ready)
+		return;
 
 	assert(m_particles.size() % BLK_SIZE<particle_type>() == 0);
 
