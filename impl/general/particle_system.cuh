@@ -6,41 +6,41 @@
 #include <general/particle_system.cuh>
 
 #ifdef __CUDACC__
-template<typename particle_t, typename advancer_t>
+template<typename advancer_t>
 #else
-template<particle particle_t, advancer advancer_t>
+template<advancable advancer_t>
 #endif
-particle_system<particle_t, advancer_t>::particle_system(size_t size) :
+particle_system<advancer_t>::particle_system(size_t size) :
 	m_particles(size),
 	m_forces(size) {}
 
 #ifdef __CUDACC__
-template<typename particle_t, typename advancer_t>
+template<typename advancer_t>
 #else
-template<particle particle_t, advancer advancer_t>
+template<advancable advancer_t>
 #endif
-void particle_system<particle_t, advancer_t>::compute()
+void particle_system<advancer_t>::compute()
 {
-	assert(m_particles.size() % BLK_SIZE == 0);
+	assert(m_particles.size() % BLK_SIZE<particle_type>() == 0);
 	assert(m_particles.size() == m_forces.size());
 
-	unsigned blk_dim = m_particles.size() / BLK_SIZE;
+	unsigned blk_dim = m_particles.size() / BLK_SIZE<particle_type>();
 	thrust::device_vector<unsigned> locks(blk_dim, blk_dim);
 
 	std::lock_guard<std::mutex> lock_system(m_mutex);
 
-	compute_interparticle_forces<particle_t> << < dim3(blk_dim, blk_dim), BLK_SIZE >> >
+	compute_interparticle_forces<particle_type> <<< dim3(blk_dim, blk_dim), BLK_SIZE<particle_type>() >>>
 		(thrust::raw_pointer_cast(m_particles.data()),
 			thrust::raw_pointer_cast(m_forces.data()),
 			thrust::raw_pointer_cast(locks.data()));
 }
 
 #ifdef __CUDACC__
-template<typename particle_t, typename advancer_t>
+template<typename advancer_t>
 #else
-template<particle particle_t, advancer advancer_t>
+template<advancable advancer_t>
 #endif
-void particle_system<particle_t, advancer_t>::advance()
+void particle_system<advancer_t>::advance()
 {
 	assert(m_particles.size() == m_forces.size());
 

@@ -8,5 +8,5 @@
 
 namespace simple
 {
-	using system = particle_system<particle, advancer>;
+	using system = particle_system<advancer>;
 }

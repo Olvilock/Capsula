@@ -12,5 +12,5 @@
 namespace simple
 {
 	//Specify template for code generation;
-	template struct particle_system<particle, advancer>;
+	template struct particle_system<advancer>;
 }

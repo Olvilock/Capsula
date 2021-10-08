@@ -18,7 +18,7 @@ using constant_type = typename particle_traits<particle_t>::constant_type;
 #ifndef __CUDACC__
 
 template<typename particle_t>
-concept particle = 
+concept interactable_particle = 
 	std::copy_constructible<constant_type<particle_t> > &&
 	std::default_initializable<force_type<particle_t> > &&
 	requires(force_type<particle_t> a, force_type<particle_t> b)

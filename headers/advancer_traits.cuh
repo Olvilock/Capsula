@@ -15,7 +15,7 @@ using particle_type = typename advancer_traits<advancer_t>::particle_type;
 #ifndef __CUDACC__
 
 template<typename advancer_t>
-concept advancer = particle<particle_type<advancer_t> >
+concept advancable = interactable_particle<particle_type<advancer_t> >
 	&& requires (advancer_t adv,
 				 const particle_type<advancer_t>& ptc,
 				 force_type<particle_type<advancer_t> > frc)
