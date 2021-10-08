@@ -12,7 +12,8 @@ struct advancer_traits
 template<typename advancer_t>
 using particle_type = typename advancer_traits<advancer_t>::particle_type;
 
-/*
+#ifndef __CUDACC__
+
 template<typename advancer_t>
 concept advancer = particle<particle_type<advancer_t> >
 	&& requires (advancer_t adv,
@@ -21,4 +22,5 @@ concept advancer = particle<particle_type<advancer_t> >
 	{
 		{ adv(ptc, frc) } -> std::same_as<particle_type<advancer_t> >;
 	};
-*/
+
+#endif

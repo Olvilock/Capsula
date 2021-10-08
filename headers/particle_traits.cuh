@@ -15,7 +15,8 @@ using force_type = typename particle_traits<particle_t>::force_type;
 template<typename particle_t>
 using constant_type = typename particle_traits<particle_t>::constant_type;
 
-/*
+#ifndef __CUDACC__
+
 template<typename particle_t>
 concept particle = 
 	std::copy_constructible<constant_type<particle_t> > &&
@@ -24,4 +25,5 @@ concept particle =
 	{
 		{ a += b } -> std::same_as<force_type<particle_t> &>;
 	};
-*/
+
+#endif
