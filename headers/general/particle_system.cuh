@@ -3,11 +3,8 @@
 #include <thrust/device_vector.h>
 #include <thrust/host_vector.h>
 
-#include <thrust/transform.h>
-#include <thrust/execution_policy.h>
-
 #include <particle_traits.cuh>
-#include "compute_all_forces.cuh"
+#include "normal_pairing.cuh"
 
 #include <mutex>
 
@@ -19,8 +16,8 @@ template<proper_particle particle_t>
 struct particle_system
 {
 	using particle_type = particle_t;
-	using force_type = force_t<particle_type>;
-	using advancer_type = advancer_t<particle_type>;
+	using force_type = particle_traits<particle_type>::force_type;
+	using advancer_type = particle_traits<particle_type>::advancer_type;
 
 	particle_system(size_t size);
 	void advance();
@@ -28,6 +25,6 @@ struct particle_system
 private:
 	thrust::device_vector<particle_type> m_particles;
 	thrust::device_vector<force_type> m_forces;
-	advancer_type m_advancer;
+	thrust::device_vector<advancer_type> m_advancers;
 	bool m_ready;
 };

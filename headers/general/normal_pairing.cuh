@@ -16,5 +16,5 @@ template<typename particle_t>
 #else
 template<proper_particle particle_t>
 #endif
-__global__ void compute_interparticle_forces
-(const particle_t* particles, force_t<particle_t>* forces, unsigned* locks);
+__global__ void normal_pairing
+	(const particle_t*, typename particle_traits<particle_t>::force_type*, unsigned*);

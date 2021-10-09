@@ -7,7 +7,7 @@ namespace simple
 	struct constant
 	{
 		simple::time_type time_step;
-		double epsilon24; //24 * epsilon
+		double _24epsilon; //24 * epsilon
 		double sigma6; //sigma ^ 6
 	};
 }

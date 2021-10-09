@@ -5,6 +5,10 @@
 
 #include <general/particle_system.cuh>
 
+#include <thrust/for_each.h>
+#include <thrust/iterator/zip_iterator.h>
+#include <thrust/execution_policy.h>
+
 #ifdef __CUDACC__
 template<typename particlce_t>
 #else
@@ -12,7 +16,11 @@ template<proper_particle particlce_t>
 #endif
 particle_system<particlce_t>::particle_system(size_t size) :
 	m_particles(size),
-	m_forces(size) {}
+	m_forces(size),
+	m_advancers(size)
+{
+	assert(size % BLK_SIZE<particle_type>() == 0);
+}
 
 #ifdef __CUDACC__
 template<typename particlce_t>
@@ -29,7 +37,7 @@ void particle_system<particlce_t>::compute()
 	unsigned blk_dim = m_particles.size() / BLK_SIZE<particle_type>();
 	thrust::device_vector<unsigned> locks(blk_dim, blk_dim);
 
-	compute_interparticle_forces<particle_type> <<< dim3(blk_dim, blk_dim), BLK_SIZE<particle_type>() >>>
+	normal_pairing<particle_type> <<< dim3(blk_dim, blk_dim), BLK_SIZE<particle_type>() >>>
 		(thrust::raw_pointer_cast(m_particles.data()),
 			thrust::raw_pointer_cast(m_forces.data()),
 			thrust::raw_pointer_cast(locks.data()));
@@ -46,12 +54,15 @@ void particle_system<particlce_t>::advance()
 {
 	compute();
 
-	thrust::transform(thrust::device,
-		m_particles.cbegin(),
-		m_particles.cend(),
-		m_forces.begin(),
-		m_particles.begin(),
-		m_advancer);
+	thrust::for_each_n(thrust::device,
+		thrust::make_zip_iterator(
+			thrust::make_tuple(
+				m_advancers.begin(), m_particles.begin(), m_forces.begin())),
+		m_particles.size(),
+		[] __device__(thrust::tuple<advancer_type&, particle_type&, force_type&> tpl)
+		{
+			thrust::get<0>(tpl)(thrust::get<1>(tpl), thrust::get<2>(tpl));
+		});
 
 	m_ready = false;
 }

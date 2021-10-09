@@ -1,7 +1,7 @@
 #pragma once
 
 #include <device_launch_parameters.h>
-#include <general/compute_all_forces.cuh>
+#include <general/normal_pairing.cuh>
 
 #ifdef __CUDACC__
 template<typename particle_t>
@@ -13,20 +13,22 @@ constexpr unsigned BLK_SIZE()
 	return 128;
 }
 
-//Call with 1-dimensional block with blockDim.x == BLK_SIZE only#ifdef __CUDACC__
+//Call with 1-dimensional block with blockDim.x == BLK_SIZE only
 #ifdef __CUDACC__
 template<typename particle_t>
 #else
 template<proper_particle particle_t>
 #endif
-__global__ void compute_interparticle_forces
-	(const particle_t* particles, force_t<particle_t>* forces, unsigned* locks)
+__global__ void normal_pairing
+(const particle_t* particles,
+	typename particle_traits<particle_t>::force_type* forces,
+	unsigned* locks)
 {
 	unsigned local_id = threadIdx.x;
 	unsigned global_id = local_id + BLK_SIZE<particle_t>() * blockIdx.x;
 	unsigned global_load = local_id + BLK_SIZE<particle_t>() * blockIdx.y;
 
-	force_t<particle_t> frc{};
+	typename particle_traits<particle_t>::force_type frc{};
 	particle_t ptc = particles[global_id];
 
 	__shared__ particle_t ptc_cache[BLK_SIZE<particle_t>()];

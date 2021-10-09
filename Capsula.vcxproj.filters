@@ -7,7 +7,7 @@
     <CudaCompile Include="impl\simple.cu">
       <Filter>simple\Implementation files</Filter>
     </CudaCompile>
-    <CudaCompile Include="impl\general\compute_all_forces.cuh">
+    <CudaCompile Include="impl\general\normal_pairing.cuh">
       <Filter>general\Implementation files</Filter>
     </CudaCompile>
     <CudaCompile Include="impl\general\particle_system.cuh">
@@ -18,7 +18,7 @@
     <ClInclude Include="headers\particle_traits.cuh">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\general\compute_all_forces.cuh">
+    <ClInclude Include="headers\general\normal_pairing.cuh">
       <Filter>general\Header files</Filter>
     </ClInclude>
     <ClInclude Include="headers\simple\advancer.cuh">
