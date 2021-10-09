@@ -2,20 +2,23 @@
 
 #pragma once
 
+#include <device_launch_parameters.h>
+
 #include "quantities.cuh"
+#include "force.cuh"
 #include "advancer.cuh"
 
 namespace simple
 {
-	struct particle
+	struct particle_t
 	{
-		pos_type m_position;
-		vel_type m_velocity;
+		position_t m_position;
+		velocity_t m_velocity;
 
-		using force_type = force;
-		using advancer_type = advancer;
+		using force_type = force_t;
+		using advancer_type = advancer_t;
 
 		//Calculate force created ON other particle_type
-		__device__ force force_on(const particle& other) const;
+		__device__ force_t force_on(const particle_t& other) const;
 	};
 }

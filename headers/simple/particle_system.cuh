@@ -7,8 +7,8 @@
 
 namespace simple
 {
-	using system = particle_system<particle>;
+	using system = particle_system<particle_t>;
 
 	//Explicit instantiation declaration
-	extern template struct particle_system<particle>;
+	extern template struct particle_system<particle_t>;
 }

@@ -7,18 +7,18 @@
 
 namespace single
 {
-	enum class wall_type
+	enum class wall_family
 	{
 		straight,
 		semisphere,
 		sphere
 	};
 
-	template<wall_type w_id>
-	struct wall
+	template<wall_family w_id>
+	struct wall_t
 	{
-		pos_type m_pos;
-		dir_type m_dir;
+		position_t m_pos;
+		direction_t m_dir;
 
 		using wall_id = w_id;
 		using particle_type = particle;

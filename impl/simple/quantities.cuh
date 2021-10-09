@@ -23,40 +23,4 @@ namespace simple
 	{
 		return { scalar * vector.x, scalar * vector.y, scalar * vector.z };
 	}
-
-	__device__
-	force::force(const double3& d3) : frc(d3) {}
-
-	__device__
-		force& force::operator += (const force& other)
-	{
-		frc.x += other.frc.x;
-		frc.y += other.frc.y;
-		frc.z += other.frc.z;
-		return *this;
-	}
-
-	__device__
-		force& force::operator -= (const force& other)
-	{
-		frc.x -= other.frc.x;
-		frc.y -= other.frc.y;
-		frc.z -= other.frc.z;
-		return *this;
-	}
-
-	__device__
-		void force::reset()
-	{
-		frc = { 0.0, 0.0, 0.0 };
-	}
-}
-
-//For dedugging reasons
-std::ostream& operator <<(std::ostream& out, const simple::force& to_out)
-{
-	out << to_out.frc.x << out.fill()
-		<< to_out.frc.y << out.fill()
-		<< to_out.frc.z;
-	return out;
 }

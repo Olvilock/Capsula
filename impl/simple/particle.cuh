@@ -1,16 +1,18 @@
 #pragma once
 
-#include <device_launch_parameters.h>
 #include <simple/particle.cuh>
-#include "constants.cuh"
+
 #include "quantities.cuh"
+#include "constants.cuh"
+#include "force.cuh"
+#include "advancer.cuh"
 
 namespace simple
 {
 	__device__
-	force particle::force_on(const particle& other) const
+	force_t particle_t::force_on(const particle_t& other) const
 	{
-		pos_type relative_pos = other.m_position - m_position;
+		auto relative_pos = other.m_position - m_position;
 		// r^2
 		double r_sq = sqr(relative_pos);
 		// (sigma/r)^6
