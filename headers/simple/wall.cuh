@@ -3,26 +3,35 @@
 #pragma once
 
 #include "quantities.cuh"
+#include "wallfrc.cuh"
 #include "particle.cuh"
 
-namespace single
+namespace simple
 {
 	enum class wall_family
 	{
-		straight,
+		any,
+		plane,
 		semisphere,
 		sphere
 	};
 
-	template<wall_family w_id>
-	struct wall_t
+	template<wall_family>
+	struct wall_t;
+
+	template<> struct wall_t<wall_family::any>
 	{
-		position_t m_pos;
-		direction_t m_dir;
+		virtual wallfrc_t force_on(const particle_t&);
+	};
 
-		using wall_id = w_id;
-		using particle_type = particle;
+	template<wall_family w_id>
+	struct wall_t final : wall_t<wall_family::any>
+	{
+		position_t m_position;
+		direction_t m_direction;
 
-		force_type force_on(const particle&);
+		using particle_type = particle_t;
+
+		wallfrc_t force_on(const particle_t&) final;
 	};
 }

@@ -128,6 +128,8 @@
     <ClInclude Include="headers\simple\quantities.cuh" />
     <ClInclude Include="headers\simple\particle_system.cuh" />
     <ClInclude Include="impl\simple\wall.cuh" />
+    <ClInclude Include="headers\simple\wallfrc.cuh" />
+    <ClInclude Include="impl\simple\wallfrc.cuh" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

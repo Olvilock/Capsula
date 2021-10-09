@@ -2,10 +2,7 @@
 
 #include <simple/particle.cuh>
 
-#include "quantities.cuh"
 #include "constants.cuh"
-#include "force.cuh"
-#include "advancer.cuh"
 
 namespace simple
 {
@@ -14,7 +11,7 @@ namespace simple
 	{
 		auto relative_pos = other.m_position - m_position;
 		// r^2
-		double r_sq = sqr(relative_pos);
+		double r_sq = relative_pos * relative_pos;
 		// (sigma/r)^6
 		double d = constants.sigma6 / (r_sq * r_sq * r_sq);
 		return (constants._24epsilon * constants.sigma6 * d * (2*d - 1) / r_sq) * relative_pos;
