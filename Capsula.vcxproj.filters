@@ -4,14 +4,14 @@
     <CudaCompile Include="headers\general\particle_system.cuh">
       <Filter>general\Header files</Filter>
     </CudaCompile>
-    <CudaCompile Include="impl\simple.cu">
-      <Filter>simple\Implementation files</Filter>
-    </CudaCompile>
     <CudaCompile Include="impl\general\normal_pairing.cuh">
       <Filter>general\Implementation files</Filter>
     </CudaCompile>
     <CudaCompile Include="impl\general\particle_system.cuh">
       <Filter>general\Implementation files</Filter>
+    </CudaCompile>
+    <CudaCompile Include="impl\simple.cu">
+      <Filter>simple</Filter>
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
