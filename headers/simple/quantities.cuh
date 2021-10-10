@@ -18,11 +18,14 @@ namespace simple
 		double3 operator -(const double3&);
 
 	__device__ __host__
-		double operator *(const double3&, const double3&);
-
-	__device__ __host__
 		double3 operator -(const double3&, const double3&);
 
 	__device__ __host__
 		double3 operator *(const double&, const double3&);
+
+	__device__ __host__
+		double operator *(const double3&, const double3&);
+
+	__device__ __host__
+		double3& operator +=(double3&, const double3&);
 }

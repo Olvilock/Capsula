@@ -6,7 +6,7 @@
 #include "simple/quantities.cuh"
 #include "simple/constants.cuh"
 #include "simple/force.cuh"
-#include "simple/wallfrc.cuh"
+#include "simple/impulse.cuh"
 #include "simple/wall.cuh"
 #include "simple/particle.cuh"
 #include "simple/advancer.cuh"

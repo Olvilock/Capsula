@@ -6,7 +6,7 @@
 
 #include "quantities.cuh"
 #include "force.cuh"
-#include "wallfrc.cuh"
+#include "impulse.cuh"
 #include "advancer.cuh"
 
 namespace simple
@@ -17,7 +17,7 @@ namespace simple
 		velocity_t m_velocity;
 
 		using force_type = force_t;
-		using wallfrc_type = wallfrc_t;
+		using wallfrc_type = impulse_t;
 		using advancer_type = advancer_t;
 
 		//Calculate force created ON other particle_type

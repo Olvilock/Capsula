@@ -60,10 +60,10 @@
     <ClInclude Include="impl\simple\force.cuh">
       <Filter>simple\Implementation files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\simple\wallfrc.cuh">
+    <ClInclude Include="headers\simple\impulse.cuh">
       <Filter>simple\Header files</Filter>
     </ClInclude>
-    <ClInclude Include="impl\simple\wallfrc.cuh">
+    <ClInclude Include="impl\simple\impulse.cuh">
       <Filter>simple\Implementation files</Filter>
     </ClInclude>
   </ItemGroup>

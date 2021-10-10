@@ -3,7 +3,7 @@
 #pragma once
 
 #include "quantities.cuh"
-#include "wallfrc.cuh"
+#include "impulse.cuh"
 #include "particle.cuh"
 
 namespace simple
@@ -21,7 +21,7 @@ namespace simple
 
 	template<> struct wall_t<wall_family::any>
 	{
-		virtual wallfrc_t force_on(const particle_t&);
+		virtual impulse_t force_on(const particle_t&);
 	};
 
 	template<wall_family w_id>
@@ -32,6 +32,6 @@ namespace simple
 
 		using particle_type = particle_t;
 
-		wallfrc_t force_on(const particle_t&) final;
+		impulse_t force_on(const particle_t&) final;
 	};
 }
