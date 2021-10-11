@@ -1,4 +1,8 @@
+//Interparticle interaction type
+
 #pragma once
+
+#include <device_launch_parameters.h>
 
 #include "quantities.cuh"
 

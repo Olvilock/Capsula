@@ -1,6 +1,8 @@
-//Velocity, angular momentum, force, etc.
+//Types of position, velocity, angular momentum, etc.
 
 #pragma once
+
+#include <device_launch_parameters.h>
 
 #include <vector_types.h>
 #include <ostream>
