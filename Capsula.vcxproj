@@ -111,7 +111,7 @@
     </CudaLink>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="impl\simple.cu" />
+    <CudaCompile Include="impl\simple\particle_system.cu" />
     <ClInclude Include="headers\general\particle_system.cuh" />
   </ItemGroup>
   <ItemGroup>
@@ -119,19 +119,31 @@
     <ClInclude Include="headers\general\normal_pairing.cuh" />
     <ClInclude Include="headers\simple\constants.cuh" />
     <ClInclude Include="headers\simple\wall.cuh" />
-    <ClInclude Include="impl\simple\constants.cuh" />
-    <ClInclude Include="impl\simple\force.cuh" />
-    <ClInclude Include="impl\simple\particle.cuh" />
-    <ClInclude Include="impl\simple\advancer.cuh" />
-    <ClInclude Include="impl\simple\quantities.cuh" />
+    <CudaCompile Include="impl\simple\constants.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="impl\simple\force.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="impl\simple\particle.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="impl\simple\advancer.cu" />
+    <CudaCompile Include="impl\simple\quantities.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
     <ClInclude Include="headers\simple\advancer.cuh" />
     <ClInclude Include="headers\simple\particle.cuh" />
     <ClInclude Include="headers\particle_traits.cuh" />
     <ClInclude Include="headers\simple\quantities.cuh" />
     <ClInclude Include="headers\simple\particle_system.cuh" />
-    <ClInclude Include="impl\simple\wall.cuh" />
+    <CudaCompile Include="impl\simple\wall.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
     <ClInclude Include="headers\simple\impulse.cuh" />
-    <ClInclude Include="impl\simple\impulse.cuh" />
+    <CudaCompile Include="impl\simple\impulse.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

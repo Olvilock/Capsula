@@ -7,10 +7,10 @@
 #include "quantities.cuh"
 #include "force.cuh"
 #include "impulse.cuh"
-#include "advancer.cuh"
 
 namespace simple
 {
+	struct advancer_t;
 	struct particle_t
 	{
 		position_t m_position;

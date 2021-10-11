@@ -1,11 +1,12 @@
 #pragma once
 
 #include <simple/particle.cuh>
-
-#include "constants.cuh"
+#include <simple/constants.cuh>
 
 namespace simple
 {
+	extern __constant__ constant_t constants;
+
 	__device__
 	force_t particle_t::force_on(const particle_t& other) const
 	{

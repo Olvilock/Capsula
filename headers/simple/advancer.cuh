@@ -7,7 +7,6 @@
 
 namespace simple
 {
-	struct particle_t;
 	struct advancer_t
 	{
 		//calculate new state of particle
