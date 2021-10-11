@@ -98,13 +98,17 @@
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
-      <CodeGeneration>compute_61,sm_61</CodeGeneration>
+      <CodeGeneration>compute_61,lto_61</CodeGeneration>
       <Defines>NDEBUG</Defines>
       <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
       <AdditionalCompilerOptions>
       </AdditionalCompilerOptions>
-      <AdditionalOptions>--expt-relaxed-constexpr --extended-lambda %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-dc --expt-relaxed-constexpr --extended-lambda %(AdditionalOptions)</AdditionalOptions>
     </CudaCompile>
+    <CudaLink>
+      <Optimization>O3</Optimization>
+      <AdditionalOptions>-gencode=arch=compute_61,code=sm_61 -dlto %(AdditionalOptions)</AdditionalOptions>
+    </CudaLink>
   </ItemDefinitionGroup>
   <ItemGroup>
     <CudaCompile Include="impl\general\normal_pairing.cuh" />

@@ -10,7 +10,7 @@ template<proper_particle particle_t>
 #endif
 constexpr unsigned BLK_SIZE();
 
-//Call with 1-dimensional block with blockDim.x == BLK_SIZE only#ifdef __CUDACC__
+//Call with 1-dimensional block with blockDim.x == BLK_SIZE only*
 #ifdef __CUDACC__
 template<typename particle_t>
 #else
