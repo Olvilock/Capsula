@@ -112,6 +112,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <CudaCompile Include="impl\simple\particle_system.cu" />
+    <ClInclude Include="headers\advancer_traits.cuh" />
     <ClInclude Include="headers\general\particle_system.cuh" />
   </ItemGroup>
   <ItemGroup>

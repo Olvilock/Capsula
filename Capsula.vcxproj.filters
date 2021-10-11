@@ -60,6 +60,7 @@
     <ClInclude Include="headers\general\particle_system.cuh">
       <Filter>general\Header files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\advancer_traits.cuh" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

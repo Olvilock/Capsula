@@ -18,7 +18,6 @@ namespace simple
 
 		using force_type = force_t;
 		using wallfrc_type = impulse_t;
-		using advancer_type = advancer_t;
 
 		//Calculate force created ON other particle_type
 		__device__ force_t force_on(const particle_t& other) const;

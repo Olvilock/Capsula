@@ -5,5 +5,5 @@
 namespace simple
 {
 	//Explicit instantiation definition
-	template struct particle_system<particle_t>;
+	template struct particle_system<particle_t, advancer_t>;
 }

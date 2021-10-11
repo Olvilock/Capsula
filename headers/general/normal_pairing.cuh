@@ -1,6 +1,8 @@
 #pragma once
 
 #include <particle_traits.cuh>
+#include <advancer_traits.cuh>
+
 #include <device_launch_parameters.h>
 
 #ifdef __CUDACC__
@@ -21,17 +23,15 @@ inline constexpr unsigned BLK_SIZE();
 //Call with 1-dimensional block with blockDim.x == BLK_SIZE only
 #ifdef __CUDACC__
 
-template<typename particle_t>
+template<typename particle_t, typename force_t>
 __global__
-inline void normal_pairing (const particle_t* particles,
-	typename particle_traits<particle_t>::force_type* forces,
-	unsigned* locks)
+inline void normal_pairing (const particle_t* particles, typename force_t* forces, unsigned* locks)
 {
 	unsigned local_id = threadIdx.x;
 	unsigned global_id = local_id + BLK_SIZE<particle_t>() * blockIdx.x;
 	unsigned global_load = local_id + BLK_SIZE<particle_t>() * blockIdx.y;
 
-	typename particle_traits<particle_t>::force_type frc{};
+	force_t frc{};
 	particle_t ptc = particles[global_id];
 
 	__shared__ particle_t ptc_cache[BLK_SIZE<particle_t>()];
@@ -56,9 +56,8 @@ inline void normal_pairing (const particle_t* particles,
 
 #else
 
-template<proper_particle particle_t>
+template<proper_particle particle_t, typename force_t>
 __global__
-inline void normal_pairing (const particle_t*,
-	typename particle_traits<particle_t>::force_type*, unsigned*);
+inline void normal_pairing (const particle_t*, typename force_t*, unsigned*);
 
 #endif
