@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CudaCompile Include="impl\simple\particle_system.cu">
-      <Filter>simple</Filter>
-    </CudaCompile>
     <CudaCompile Include="impl\simple\advancer.cu">
       <Filter>simple\Implementation files</Filter>
     </CudaCompile>
@@ -25,13 +22,13 @@
     <CudaCompile Include="impl\simple\wall.cu">
       <Filter>simple\Implementation files</Filter>
     </CudaCompile>
+    <CudaCompile Include="impl\simple\particle_system.cu">
+      <Filter>simple\Implementation files</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\particle_traits.cuh">
       <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\general\normal_pairing.cuh">
-      <Filter>general\Header files</Filter>
     </ClInclude>
     <ClInclude Include="headers\simple\advancer.cuh">
       <Filter>simple\Header files</Filter>
@@ -57,10 +54,15 @@
     <ClInclude Include="headers\simple\impulse.cuh">
       <Filter>simple\Header files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\general\particle_system.cuh">
-      <Filter>general\Header files</Filter>
+    <ClInclude Include="headers\advancer_traits.cuh">
+      <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\advancer_traits.cuh" />
+    <ClInclude Include="headers\general\normal_pairing.cuh">
+      <Filter>Header files\general</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\general\particle_system.cuh">
+      <Filter>Header files\general</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
@@ -78,14 +80,8 @@
     <Filter Include="simple\Implementation files">
       <UniqueIdentifier>{77dfe224-c32a-4768-89ef-96b10e2e854e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="general">
+    <Filter Include="Header files\general">
       <UniqueIdentifier>{03ab2659-7124-47e8-835e-565d62c5bf86}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="general\Implementation files">
-      <UniqueIdentifier>{21cdf18e-ad0c-464e-a26b-c10abcdb6049}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="general\Header files">
-      <UniqueIdentifier>{bb2968b8-d8a3-4d53-a135-ed242a8fa564}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
