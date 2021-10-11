@@ -8,10 +8,10 @@
 
 #include "normal_pairing.cuh"
 
-#ifdef __CUDACC__
-template<typename particle_t, typename advancer_t>
-#else
+#ifndef __CUDACC__
 template<proper_particle particle_t, proper_advancer advancer_t>
+#else
+template<typename particle_t, typename advancer_t>
 #endif
 struct particle_system
 {
