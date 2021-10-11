@@ -111,10 +111,8 @@
     </CudaLink>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="impl\general\normal_pairing.cuh" />
-    <CudaCompile Include="impl\general\particle_system.cuh" />
     <CudaCompile Include="impl\simple.cu" />
-    <CudaCompile Include="headers\general\particle_system.cuh" />
+    <ClInclude Include="headers\general\particle_system.cuh" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\simple\force.cuh" />

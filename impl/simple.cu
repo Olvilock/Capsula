@@ -1,8 +1,5 @@
 ﻿//Implementation of simple
 
-#include "general/particle_system.cuh"
-#include "general/normal_pairing.cuh"
-
 #include "simple/quantities.cuh"
 #include "simple/constants.cuh"
 #include "simple/force.cuh"
