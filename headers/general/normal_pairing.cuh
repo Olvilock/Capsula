@@ -4,18 +4,23 @@
 #include <device_launch_parameters.h>
 
 #ifdef __CUDACC__
+
 template<typename particle_t>
 inline constexpr unsigned BLK_SIZE()
 {
 	return 128;
 }
+
 #else
+
 template<proper_particle particle_t>
 inline constexpr unsigned BLK_SIZE();
+
 #endif
 
 //Call with 1-dimensional block with blockDim.x == BLK_SIZE only
 #ifdef __CUDACC__
+
 template<typename particle_t>
 __global__
 inline void normal_pairing (const particle_t* particles,
@@ -48,9 +53,12 @@ inline void normal_pairing (const particle_t* particles,
 		locks[blockIdx.x] = gridDim.x;
 	__syncthreads();
 }
+
 #else
+
 template<proper_particle particle_t>
 __global__
 inline void normal_pairing (const particle_t*,
 	typename particle_traits<particle_t>::force_type*, unsigned*);
+
 #endif
