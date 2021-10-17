@@ -9,17 +9,17 @@
 namespace simple
 {
 	//interaction type
-	struct force_t
+	struct Force
 	{
 		double3 m_force;
 
-		force_t() = default;
+		Force() = default;
 		__device__ __host__
-			force_t(const double3&);
+			Force(const double3&);
 
-		__device__ __host__ force_t& operator += (const force_t& other);
+		__device__ __host__ Force& operator += (const Force& other);
 		__device__ __host__ void reset();
 
-		friend std::ostream& operator <<(std::ostream& out, const force_t& to_out);
+		friend std::ostream& operator <<(std::ostream& out, const Force& to_out);
 	};
 }

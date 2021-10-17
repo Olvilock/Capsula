@@ -11,10 +11,10 @@ namespace simple
 {
 	using time_t = double;
 
-	using position_t = double3;
-	using posdiff_t = double3;
-	using velocity_t = double3;
-	using direction_t = double3;
+	using Position = double3;
+	using PosDiff = double3;
+	using Velocity = double3;
+	using Direction = double3;
 
 	__device__ __host__
 		double3 operator -(const double3&);

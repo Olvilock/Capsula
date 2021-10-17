@@ -111,9 +111,9 @@
     </CudaLink>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="impl\simple\particle_system.cu" />
+    <CudaCompile Include="impl\simple\system.cu" />
     <ClInclude Include="headers\advancer_traits.cuh" />
-    <ClInclude Include="headers\general\particle_system.cuh" />
+    <ClInclude Include="headers\general\system.cuh" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\simple\force.cuh" />
@@ -137,7 +137,7 @@
     <ClInclude Include="headers\simple\particle.cuh" />
     <ClInclude Include="headers\particle_traits.cuh" />
     <ClInclude Include="headers\simple\quantities.cuh" />
-    <ClInclude Include="headers\simple\particle_system.cuh" />
+    <ClInclude Include="headers\simple\system.cuh" />
     <CudaCompile Include="impl\simple\wall.cu">
       <FileType>Document</FileType>
     </CudaCompile>

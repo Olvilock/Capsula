@@ -10,15 +10,15 @@
 
 namespace simple
 {
-	struct particle_t
+	struct Particle
 	{
-		position_t m_position;
-		velocity_t m_velocity;
+		Position m_position;
+		Velocity m_velocity;
 
-		using force_type = force_t;
-		using wallfrc_type = impulse_t;
+		using force_type = Force;
+		using wallfrc_type = Impulse;
 
 		//Calculate force created ON other particle_type
-		__device__ force_t force_on(const particle_t& other) const;
+		__device__ Force force_on(const Particle& other) const;
 	};
 }

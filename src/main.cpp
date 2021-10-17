@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include <simple/particle_system.cuh>
+#include <simple/System.cuh>
 
 int main()
 {
-	simple::system par(1024 * 16);
+	simple::System par(1024 * 16);
 	for (int i = 0; i < 10; ++i)
 	{
 		std::cout << "Computation " << i << " started...\n";

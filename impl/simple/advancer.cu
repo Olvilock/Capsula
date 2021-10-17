@@ -6,11 +6,11 @@
 
 namespace simple
 {
-	extern __constant__ constant_t constants;
+	extern __constant__ Constant constants;
 
 	__device__
-		void advancer_t::operator()
-		(particle_t& ptc, force_t& frc)
+		void Advancer::operator()
+		(Particle& ptc, Force& frc)
 	{
 		ptc.m_position += constants.time_step * ptc.m_velocity;
 		frc.reset();

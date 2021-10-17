@@ -4,14 +4,14 @@
 
 namespace simple
 {
-	struct constant_t
+	struct Constant
 	{
 		simple::time_t time_step;
 		
 		//24 * epsilon
-		double _24epsilon; 
+		double par_24epsilon; 
 		
 		//sigma ^ 6
-		double sigma6; 
+		double par_sigma6; 
 	};
 }

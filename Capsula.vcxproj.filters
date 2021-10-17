@@ -22,7 +22,7 @@
     <CudaCompile Include="impl\simple\wall.cu">
       <Filter>simple\Implementation files</Filter>
     </CudaCompile>
-    <CudaCompile Include="impl\simple\particle_system.cu">
+    <CudaCompile Include="impl\simple\system.cu">
       <Filter>simple\Implementation files</Filter>
     </CudaCompile>
   </ItemGroup>
@@ -39,7 +39,7 @@
     <ClInclude Include="headers\simple\particle.cuh">
       <Filter>simple\Header files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\simple\particle_system.cuh">
+    <ClInclude Include="headers\simple\system.cuh">
       <Filter>simple\Header files</Filter>
     </ClInclude>
     <ClInclude Include="headers\simple\quantities.cuh">
@@ -60,7 +60,7 @@
     <ClInclude Include="headers\general\normal_pairing.cuh">
       <Filter>Header files\general</Filter>
     </ClInclude>
-    <ClInclude Include="headers\general\particle_system.cuh">
+    <ClInclude Include="headers\general\system.cuh">
       <Filter>Header files\general</Filter>
     </ClInclude>
   </ItemGroup>

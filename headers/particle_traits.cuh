@@ -2,18 +2,18 @@
 
 #include <concepts>
 
-template<typename particle_t>
+template<typename Particle>
 struct particle_traits
 {
-	using force_type = particle_t::force_type;
-	using wallfrc_type = particle_t::wallfrc_type;
+	using force_type = Particle::force_type;
+	using wallfrc_type = Particle::wallfrc_type;
 };
 
 #ifndef __CUDACC__
 
-template<typename particle_t>
+template<typename Particle>
 concept proper_particle =
-	std::default_initializable<typename particle_traits<particle_t>::force_type> &&
-	std::default_initializable<typename particle_traits<particle_t>::wallfrc_type>;
+	std::default_initializable<typename particle_traits<Particle>::force_type> &&
+	std::default_initializable<typename particle_traits<Particle>::wallfrc_type>;
 
 #endif

@@ -7,13 +7,13 @@
 
 namespace simple
 {
-	struct advancer_t
+	struct Advancer
 	{
-		using particle_type = particle_t;
-		using force_type = force_t;
+		using particle_type = Particle;
+		using force_type = Force;
 
 		//calculate new state of particle
 		//constants should reside in __constant__ memory of GPU
-		__device__ void operator()(particle_t&, force_t&);
+		__device__ void operator()(Particle&, Force&);
 	};
 }

@@ -5,10 +5,10 @@
 namespace simple
 {
 	__device__ __host__
-		impulse_t::impulse_t(const double3& d3) : m_impulse(d3) {}
+		Impulse::Impulse(const double3& d3) : m_impulse(d3) {}
 
 	__device__ __host__
-		impulse_t& impulse_t::operator += (const impulse_t& other)
+		Impulse& Impulse::operator += (const Impulse& other)
 	{
 		m_impulse.x += other.m_impulse.x;
 		m_impulse.y += other.m_impulse.y;
@@ -17,14 +17,14 @@ namespace simple
 	}
 
 	__device__ __host__
-		void impulse_t::reset()
+		void Impulse::reset()
 	{
 		m_impulse = { 0.0, 0.0, 0.0 };
 	}
 }
 
 //For dedugging reasons
-std::ostream& operator <<(std::ostream& out, const simple::impulse_t& to_out)
+std::ostream& operator <<(std::ostream& out, const simple::Impulse& to_out)
 {
 	out << to_out.m_impulse.x << out.fill()
 		<< to_out.m_impulse.y << out.fill()

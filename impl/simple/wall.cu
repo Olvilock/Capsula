@@ -4,7 +4,7 @@
 
 namespace simple
 {
-	impulse_t wall_t<wall_family::plane>::force_on(const particle_t& ptc)
+	Impulse Wall<WallFamily::plane>::force_on(const Particle& ptc)
 	{
 		if ((ptc.m_position - m_position) * m_direction > 0.0)
 		{

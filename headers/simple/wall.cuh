@@ -8,7 +8,7 @@
 
 namespace simple
 {
-	enum class wall_family
+	enum class WallFamily
 	{
 		any,
 		plane,
@@ -16,22 +16,22 @@ namespace simple
 		sphere
 	};
 
-	template<wall_family>
-	struct wall_t;
+	template<WallFamily>
+	struct Wall;
 
-	template<> struct wall_t<wall_family::any>
+	template<> struct Wall<WallFamily::any>
 	{
-		virtual impulse_t force_on(const particle_t&);
+		virtual Impulse force_on(const Particle&);
 	};
 
-	template<wall_family w_id>
-	struct wall_t final : wall_t<wall_family::any>
+	template<WallFamily w_id>
+	struct Wall final : Wall<WallFamily::any>
 	{
-		position_t m_position;
-		direction_t m_direction;
+		Position m_position;
+		Direction m_direction;
 
-		using particle_type = particle_t;
+		using particle_type = Particle;
 
-		impulse_t force_on(const particle_t&) final;
+		Impulse force_on(const Particle&) final;
 	};
 }
