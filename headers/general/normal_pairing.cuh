@@ -34,8 +34,8 @@ __global__
 inline void normal_pairing (const particle_t* particles, typename force_t* forces, unsigned* locks)
 {
 	unsigned local_id = threadIdx.x;
-	unsigned global_id = local_id + BLK_SIZE<particle_t>() * blockIdx.x;
-	unsigned global_load = local_id + BLK_SIZE<particle_t>() * blockIdx.y;
+	unsigned global_id = local_id + blockDim.x * blockIdx.x;
+	unsigned global_load = local_id + blockDim.x * blockIdx.y;
 
 	force_t frc{};
 	particle_t ptc = particles[global_id];
@@ -44,9 +44,9 @@ inline void normal_pairing (const particle_t* particles, typename force_t* force
 	ptc_cache[local_id] = particles[global_load];
 	__syncthreads();
 
-	for (unsigned local_cur = local_id + BLK_SIZE<particle_t>() - (blockIdx.x == blockIdx.y);
+	for (unsigned local_cur = local_id + blockDim.x - (blockIdx.x == blockIdx.y);
 		local_cur != local_id; --local_cur)
-		frc += ptc_cache[local_cur % BLK_SIZE<particle_t>()].force_on(ptc);
+		frc += ptc_cache[local_cur % blockDim.x].force_on(ptc);
 
 	if (local_id == 0)
 		while (atomicCAS(locks + blockIdx.x, gridDim.x, blockIdx.x) != blockIdx.x);
