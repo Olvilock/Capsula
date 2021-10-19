@@ -64,7 +64,7 @@
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
-      <CodeGeneration>compute_61,sm_61</CodeGeneration>
+      <CodeGeneration>compute_61,lto_61</CodeGeneration>
       <Defines>
       </Defines>
       <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
@@ -73,6 +73,9 @@
       <AdditionalOptions>--expt-relaxed-constexpr --extended-lambda %(AdditionalOptions)</AdditionalOptions>
     </CudaCompile>
     <CudaLink />
+    <CudaLink>
+      <AdditionalOptions>-gencode=arch=compute_61,code=sm_61 %(AdditionalOptions)</AdditionalOptions>
+    </CudaLink>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
